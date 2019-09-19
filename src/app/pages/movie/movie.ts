@@ -1,17 +1,19 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, IonList, LoadingController, ModalController, ToastController } from '@ionic/angular';
 
-import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
 import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
 
+import { LOCAL_CONFIG } from '../../config/config-api';
+import { ApiConfig } from '../../models/api';
+
 @Component({
-  selector: 'page-schedule',
-  templateUrl: 'schedule.html',
-  styleUrls: ['./schedule.scss'],
+  selector: 'page-movie',
+  templateUrl: 'movie.html',
+  styleUrls: ['./movie.scss'],
 })
-export class SchedulePage implements OnInit {
+export class MoviePage implements OnInit {
   // Gets a reference to the list element
   @ViewChild('scheduleList', { static: true }) scheduleList: IonList;
 
@@ -30,7 +32,8 @@ export class SchedulePage implements OnInit {
     public modalCtrl: ModalController,
     public router: Router,
     public toastCtrl: ToastController,
-    public user: UserData
+    public user: UserData,
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) { }
 
   ngOnInit() {
@@ -43,24 +46,20 @@ export class SchedulePage implements OnInit {
       this.scheduleList.closeSlidingItems();
     }
 
+
+    this.confData.getPopularFilms().subscribe(
+      (filmList: any) => {
+        console.log(filmList);
+      },
+      err => console.log('error', err)
+    );
+
+
+
     this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
       this.shownSessions = data.shownSessions;
       this.groups = data.groups;
     });
-  }
-
-  async presentFilter() {
-    const modal = await this.modalCtrl.create({
-      component: ScheduleFilterPage,
-      componentProps: { excludedTracks: this.excludeTracks }
-    });
-    await modal.present();
-
-    const { data } = await modal.onWillDismiss();
-    if (data) {
-      this.excludeTracks = data;
-      this.updateSchedule();
-    }
   }
 
   async addFavorite(slidingItem: HTMLIonItemSlidingElement, sessionData: any) {

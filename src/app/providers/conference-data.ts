@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { LOCAL_CONFIG } from '../config/config-api';
+import { ApiConfig } from '../models/api';
 
 import { UserData } from './user-data';
 
@@ -11,7 +14,7 @@ import { UserData } from './user-data';
 export class ConferenceData {
   data: any;
 
-  constructor(public http: HttpClient, public user: UserData) {}
+  constructor(public http: HttpClient, public user: UserData, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) {}
 
   load(): any {
     if (this.data) {
@@ -21,6 +24,10 @@ export class ConferenceData {
         .get('assets/data/data.json')
         .pipe(map(this.processData, this));
     }
+  }
+
+  getPopularFilms(page?: number) {
+    return this.http.get(`${this.localConfig.movieUrl}/popular${this.localConfig.params}&page=${page}`);
   }
 
   processData(data: any) {

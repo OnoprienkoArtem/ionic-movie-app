@@ -20,19 +20,14 @@ import { UserData } from './providers/user-data';
 export class AppComponent implements OnInit {
   appPages = [
     {
-      title: 'Schedule',
-      url: '/app/tabs/schedule',
-      icon: 'calendar'
+      title: 'Movie',
+      url: '/app/tabs/movie',
+      icon: 'film'
     },
     {
       title: 'Speakers',
       url: '/app/tabs/speakers',
       icon: 'contacts'
-    },
-    {
-      title: 'Map',
-      url: '/app/tabs/map',
-      icon: 'map'
     },
     {
       title: 'About',
@@ -102,10 +97,6 @@ export class AppComponent implements OnInit {
       this.updateLoggedInStatus(true);
     });
 
-    this.events.subscribe('user:signup', () => {
-      this.updateLoggedInStatus(true);
-    });
-
     this.events.subscribe('user:logout', () => {
       this.updateLoggedInStatus(false);
     });
@@ -113,7 +104,7 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.userData.logout().then(() => {
-      return this.router.navigateByUrl('/app/tabs/schedule');
+      return this.router.navigateByUrl('/app/tabs/movie');
     });
   }
 

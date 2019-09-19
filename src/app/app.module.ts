@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+import { LOCAL_CONFIG, localConfig } from './config/config-api';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -24,7 +26,8 @@ import { environment } from '../environments/environment';
     })
   ],
   declarations: [AppComponent],
-  providers: [InAppBrowser, SplashScreen, StatusBar],
+  providers: [InAppBrowser, SplashScreen, StatusBar,
+    {provide: LOCAL_CONFIG, useValue: localConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
