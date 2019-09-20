@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AlertController, IonList, LoadingController, ModalController, ToastController } from '@ionic/angular';
 
 import { ConferenceData } from '../../providers/conference-data';
+import { MovieService } from '../../providers/movie.service';
+
 import { UserData } from '../../providers/user-data';
 
 import { LOCAL_CONFIG } from '../../config/config-api';
@@ -25,6 +27,9 @@ export class MoviePage implements OnInit {
   groups: any = [];
   confDate: string;
 
+  public films: any;
+  public imgUrl: string = this.localConfig.midImgPath;
+
   constructor(
     public alertCtrl: AlertController,
     public confData: ConferenceData,
@@ -33,6 +38,7 @@ export class MoviePage implements OnInit {
     public router: Router,
     public toastCtrl: ToastController,
     public user: UserData,
+    public movieService: MovieService,
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) { }
 
@@ -47,9 +53,10 @@ export class MoviePage implements OnInit {
     }
 
 
-    this.confData.getPopularFilms().subscribe(
+    this.movieService.getPopularFilms().subscribe(
       (filmList: any) => {
         console.log(filmList);
+        this.films = filmList.results;
       },
       err => console.log('error', err)
     );
@@ -60,6 +67,10 @@ export class MoviePage implements OnInit {
       this.shownSessions = data.shownSessions;
       this.groups = data.groups;
     });
+  }
+
+  showDetails(id) {
+    console.log(id);
   }
 
   async addFavorite(slidingItem: HTMLIonItemSlidingElement, sessionData: any) {

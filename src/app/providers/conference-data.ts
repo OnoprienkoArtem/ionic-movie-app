@@ -26,9 +26,7 @@ export class ConferenceData {
     }
   }
 
-  getPopularFilms(page?: number) {
-    return this.http.get(`${this.localConfig.movieUrl}/popular${this.localConfig.params}&page=${page}`);
-  }
+
 
   processData(data: any) {
     // just some good 'ol JS fun with objects and arrays

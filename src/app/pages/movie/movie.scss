@@ -1,19 +1,50 @@
-$categories: (
-  ionic: var(--ion-color-primary),
-  angular: #ac282b,
-  communication: #8e8d93,
-  tooling: #fe4c52,
-  services: #fd8b2d,
-  design: #fed035,
-  workshop: #69bb7b,
-  food: #3bc7c4,
-  documentation: #b16be3,
-  navigation: #6600cc
-);
+$categories: ( ionic: var(--ion-color-primary), angular: #ac282b, communication: #8e8d93, tooling: #fe4c52, services: #fd8b2d, design: #fed035, workshop: #69bb7b, food: #3bc7c4, documentation: #b16be3, navigation: #6600cc);
+@each $track,
+$value in map-remove($categories) {
+    ion-item-sliding[track='#{$track}'] ion-label {
+        border-left: 2px solid $value;
+        padding-left: 10px;
+    }
+}
 
-@each $track, $value in map-remove($categories) {
-  ion-item-sliding[track='#{$track}'] ion-label {
-    border-left: 2px solid $value;
-    padding-left: 10px;
-  }
+.welcome-card img {
+    max-height: 35vh;
+    overflow: hidden;
+}
+
+ion-card {
+    margin: 0;
+}
+
+ion-card-header {
+    padding: 5px;
+    height: 45px;
+    display: flex;
+}
+
+ion-card-title {
+    margin: auto 0;
+    font-size: 14px;
+}
+
+.welcome-card img {
+    max-height: 30vh;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+ion-fab {
+    bottom: 22px;
+    opacity: 0.7;
+}
+
+ion-fab-button {
+    width: 45px;
+    height: 45px;
+}
+
+.list-ios {
+    margin-bottom: 0;
 }
