@@ -28,25 +28,6 @@
                     <ion-list-header>
                         Account
                     </ion-list-header>
-
-                    <ion-menu-toggle autoHide="false">
-                        <ion-item routerLink="/account" routerDirection="root">
-                            <ion-icon slot="start" name="person"></ion-icon>
-                            <ion-label>
-                                Account
-                            </ion-label>
-                        </ion-item>
-                    </ion-menu-toggle>
-
-                    <ion-menu-toggle autoHide="false">
-                        <ion-item routerLink="/support" routerDirection="root">
-                            <ion-icon slot="start" name="help"></ion-icon>
-                            <ion-label>
-                                Support
-                            </ion-label>
-                        </ion-item>
-                    </ion-menu-toggle>
-
                     <ion-menu-toggle autoHide="false">
                         <ion-item button (click)="logout()">
                             <ion-icon slot="start" name="log-out"></ion-icon>
@@ -55,14 +36,12 @@
                             </ion-label>
                         </ion-item>
                     </ion-menu-toggle>
-
                 </ion-list>
 
                 <ion-list *ngIf="!loggedIn">
                     <ion-list-header>
                         Account
                     </ion-list-header>
-
                     <ion-menu-toggle autoHide="false">
                         <ion-item routerLink="/login" routerDirection="root">
                             <ion-icon slot="start" name="log-in"></ion-icon>
@@ -71,26 +50,16 @@
                             </ion-label>
                         </ion-item>
                     </ion-menu-toggle>
-
-                    <ion-menu-toggle autoHide="false">
-                        <ion-item routerLink="/support" routerDirection="root">
-                            <ion-icon slot="start" name="help"></ion-icon>
-                            <ion-label>
-                                Support
-                            </ion-label>
-                        </ion-item>
-                    </ion-menu-toggle>
-
                 </ion-list>
 
                 <ion-list>
                     <ion-list-header>
-                        Tutorial
+                        Сonception
                     </ion-list-header>
                     <ion-menu-toggle autoHide="false">
                         <ion-item button (click)="openTutorial()">
                             <ion-icon slot="start" name="hammer"></ion-icon>
-                            <ion-label>Show Tutorial</ion-label>
+                            <ion-label>Show presentation</ion-label>
                         </ion-item>
                     </ion-menu-toggle>
                 </ion-list>
