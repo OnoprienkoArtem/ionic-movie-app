@@ -25,6 +25,7 @@ export class LoginPage {
   onLogin(form: NgForm) {
     this.submitted = true;
 
+
     if (form.valid) {
       this.userData.login(this.login.username);
       this.router.navigateByUrl('/app/tabs/movie');
