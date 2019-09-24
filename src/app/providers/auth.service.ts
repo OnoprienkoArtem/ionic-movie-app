@@ -56,6 +56,9 @@ export class AuthService {
 
 
   login(username: string, password: string) {
+    console.log('name', username);
+    console.log('password', password);
+
     return this.getToken().pipe(
       concatMap((token: any) => {
         console.log(token);

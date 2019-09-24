@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../providers/auth.service';
 
 import { UserData } from '../../providers/user-data';
 
@@ -18,12 +19,17 @@ export class LoginPage {
   submitted = false;
 
   constructor(
+    private authService: AuthService,
     public userData: UserData,
     public router: Router
   ) { }
 
   onLogin(form: NgForm) {
     this.submitted = true;
+
+
+    console.log(form.value.username);
+    console.log(form.value.password);
 
 
     if (form.valid) {
@@ -35,7 +41,7 @@ export class LoginPage {
     //   return;
     // }
 
-    // this.authService.login(this.loginForm.value.name, this.loginForm.value.password);
+    this.authService.login(form.value.username, form.value.password);
 
 
   }
