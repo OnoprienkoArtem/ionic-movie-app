@@ -30,7 +30,18 @@ export class LoginPage {
       this.userData.login(this.login.username);
       this.router.navigateByUrl('/app/tabs/movie');
     }
+
+    // if (this.loginForm.invalid) {
+    //   return;
+    // }
+
+    // this.authService.login(this.loginForm.value.name, this.loginForm.value.password);
+
+
   }
+
+
+
 
 
 }

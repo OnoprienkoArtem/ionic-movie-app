@@ -49,7 +49,7 @@ export class AuthService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       body: httpParams
-    }
+    };
 
     return this.http.delete(`${this.localConfig.sessionUrl}?api_key=${this.localConfig.apiKey}`, httpOptions);
   }
