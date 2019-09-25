@@ -33,8 +33,7 @@ export class AuthService {
   }
 
   authenticationToken(requst_token: string, username: string, password: string) {
-    return this.http.get(`${this.localConfig.authenticationUrl}?username=${username}&
-    password=${password}&request_token=${requst_token}&api_key=${this.localConfig.apiKey}`);
+    return this.http.get(`${this.localConfig.authenticationUrl}?username=${username}&password=${password}&request_token=${requst_token}&api_key=${this.localConfig.apiKey}`);
   }
 
   getSession(requst_token: string) {
@@ -56,12 +55,12 @@ export class AuthService {
 
 
   login(username: string, password: string) {
-    console.log('name', username);
+    console.log('name', typeof username);
     console.log('password', password);
 
     return this.getToken().pipe(
       concatMap((token: any) => {
-        console.log(token);
+        console.log('token', token);
         return this.authenticationToken(token.request_token, username, password);
       }),
       concatMap((token: any) => {
@@ -70,7 +69,7 @@ export class AuthService {
         return this.getSession(token.request_token);
       }),
       concatMap((session: any) => {
-        console.log(session);
+        console.log('token', session);
         if (session.success) {
           localStorage.setItem('session_id', session.session_id);
           this.loggedIn = true;
@@ -83,7 +82,7 @@ export class AuthService {
             if (session.success) {
               localStorage.setItem('user_name', user.username);
               localStorage.setItem('user_id', user.id);
-              this.router.navigate(['/main']);
+              this.router.navigateByUrl('/app/tabs/movie');
             }
           })
         );

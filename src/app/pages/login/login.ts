@@ -25,6 +25,11 @@ export class LoginPage {
   ) { }
 
   onLogin(form: NgForm) {
+
+    if (form.invalid) {
+      return;
+    }
+
     this.submitted = true;
 
 
@@ -34,14 +39,12 @@ export class LoginPage {
 
     if (form.valid) {
       this.userData.login(this.login.username);
-      this.router.navigateByUrl('/app/tabs/movie');
+      this.authService.login(form.value.username, form.value.password);
     }
 
-    // if (this.loginForm.invalid) {
-    //   return;
-    // }
 
-    this.authService.login(form.value.username, form.value.password);
+
+    
 
 
   }
