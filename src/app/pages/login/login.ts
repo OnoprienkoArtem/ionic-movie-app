@@ -38,13 +38,11 @@ export class LoginPage {
 
 
     if (form.valid) {
-      this.userData.login(this.login.username);
+      this.userData.login(form.value.username);
       this.authService.login(form.value.username, form.value.password);
     }
 
 
-
-    
 
 
   }
