@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { ActionSheetController } from '@ionic/angular';
@@ -13,17 +13,30 @@ import { ConferenceData } from '../../providers/conference-data';
   templateUrl: 'people-list.html',
   styleUrls: ['./people-list.scss'],
 })
-export class PeopleListPage {
+export class PeopleListPage implements OnInit  {
   speakers: any[] = [];
   public imgUrl: string = this.localConfig.midImgPath;
+  public actors: any[] = [];
 
   constructor(
     public actionSheetCtrl: ActionSheetController,
     public confData: ConferenceData,
     public inAppBrowser: InAppBrowser,
     public router: Router,
+    private movieService: MovieService,
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) {}
+
+
+  ngOnInit() {
+    this.movieService.getPopularActors().subscribe(
+      (actorsList: any) => {
+        console.log(actorsList);
+        this.actors = actorsList.results;
+      },
+      err => console.log('error', err)
+    );
+  }
 
   ionViewDidEnter() {
     this.confData.getSpeakers().subscribe((speakers: any[]) => {

@@ -13,7 +13,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'tutorial.html',
   styleUrls: ['./tutorial.scss'],
 })
-export class TutorialPage implements OnInit  {
+export class TutorialPage implements OnInit {
 
   public imgUrl: string = this.localConfig.midImgPath;
   showSkip = true;

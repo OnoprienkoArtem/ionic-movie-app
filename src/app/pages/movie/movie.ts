@@ -1,7 +1,6 @@
 import { Component, ViewChild, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, IonList, LoadingController, ModalController, ToastController } from '@ionic/angular';
-
 import { ConferenceData } from '../../providers/conference-data';
 import { MovieService } from '../../providers/movie.service';
 
@@ -28,6 +27,7 @@ export class MoviePage implements OnInit {
   confDate: string;
 
   public films: any;
+  public favorites: any;
   public imgUrl: string = this.localConfig.midImgPath;
 
   private userId = localStorage.getItem('user_id');
@@ -55,20 +55,13 @@ export class MoviePage implements OnInit {
       this.scheduleList.closeSlidingItems();
     }
 
-
-    this.movieService.getPopularFilms().subscribe(
-      (filmList: any) => {
-        console.log(filmList);
-        this.films = filmList.results;
-      },
-      err => console.log('error', err)
-    );
-
-    this.movieService.getListOfFavotitesFilms(this.userId, this.sessionId, 1).subscribe((favorites: any) => {
-      console.log(favorites);
-      this.films = favorites.results;
+    this.movieService.getPopularFilms().subscribe((filmList: any) => {
+      this.films = filmList.results;
     });
 
+    this.movieService.getListOfFavotitesFilms(this.userId, this.sessionId, 1).subscribe((favorites: any) => {
+      this.favorites = favorites.results;
+    });
 
     this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
       this.shownSessions = data.shownSessions;
@@ -76,9 +69,13 @@ export class MoviePage implements OnInit {
     });
   }
 
+
+
   showDetails(id) {
     console.log(id);
   }
+
+
 
   async addFavorite(slidingItem: HTMLIonItemSlidingElement, sessionData: any) {
     if (this.user.hasFavorite(sessionData.name)) {
