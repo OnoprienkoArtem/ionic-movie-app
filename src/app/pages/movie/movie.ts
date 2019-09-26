@@ -30,6 +30,9 @@ export class MoviePage implements OnInit {
   public films: any;
   public imgUrl: string = this.localConfig.midImgPath;
 
+  private userId = localStorage.getItem('user_id');
+  private sessionId = localStorage.getItem('session_id');
+
   constructor(
     public alertCtrl: AlertController,
     public confData: ConferenceData,
@@ -61,6 +64,10 @@ export class MoviePage implements OnInit {
       err => console.log('error', err)
     );
 
+    this.movieService.getListOfFavotitesFilms(this.userId, this.sessionId, 1).subscribe((favorites: any) => {
+      console.log(favorites);
+      this.films = favorites.results;
+    });
 
 
     this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {

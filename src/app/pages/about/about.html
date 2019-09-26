@@ -13,33 +13,27 @@
 
 <ion-content>
     <div class="about-header">
-        <img src="assets/img/ionic-logo-white.svg" alt="ionic logo">
+        <img src="assets/img/primary-green.svg" alt="ionic logo">
     </div>
     <div class="about-info">
-        <h4 class="ion-padding-start">Ionic Conference</h4>
+        <h4 class="ion-padding-start">Let's talk about TMDb</h4>
 
         <ion-list lines="none">
             <ion-item>
-                <ion-icon name="calendar" slot="start"></ion-icon>
-                <ion-label position="stacked">Date</ion-label>
-                <ion-datetime displayFormat="MMM DD, YYYY" max="2056" [(ngModel)]="conferenceDate"></ion-datetime>
+                <p class="ion-padding-start ion-padding-end">Every year since 2008, the number of contributions to our database has increased. With over 200,000 developers and companies using our platform, TMDb has become a premiere source for metadata.</p>
             </ion-item>
-
             <ion-item>
-                <ion-icon name="pin" slot="start"></ion-icon>
-                <ion-label position="stacked">Location</ion-label>
-                <ion-select>
-                    <ion-select-option value="madison" selected>Madison, WI</ion-select-option>
-                    <ion-select-option value="austin">Austin, TX</ion-select-option>
-                    <ion-select-option value="chicago">Chicago, IL</ion-select-option>
-                    <ion-select-option value="seattle">Seattle, WA</ion-select-option>
-                </ion-select>
+                <p class="ion-padding-start ion-padding-end">Along with extensive metadata for movies, TV shows and people, we also offer one of the best selections of high resolution posters and fanart. On average, over 1,000 images are added every single day.</p>
+            </ion-item>
+            <ion-item>
+                <p class="ion-padding-start ion-padding-end">We're international. While we officially support 39 languages we also have extensive regional data. Every single day TMDb is used in over 180 countries.</p>
+            </ion-item>
+            <ion-item>
+                <p class="ion-padding-start ion-padding-end">Our community is second to none. Between our staff and community moderators, we're always here to help. We're passionate about making sure your experience on TMDb is nothing short of amazing.</p>
+            </ion-item>
+            <ion-item>
+                <p class="ion-padding-start ion-padding-end">Trusted platform. Every single day our service is used by millions of people while we process over 3 billion requests. We've proven for years that this is a service that can be trusted and relied on.</p>
             </ion-item>
         </ion-list>
-
-        <p class="ion-padding-start ion-padding-end">
-            The Ionic Conference is a one-day conference featuring talks from the Ionic team. It is focused on Ionic applications being built with Ionic 2. This includes migrating apps from Ionic 1 to Ionic 2, Angular concepts, Webpack, Sass, and many other technologies
-            used in Ionic 2. Tickets are completely sold out, and we’re expecting more than 1000 developers – making this the largest Ionic conference ever!
-        </p>
     </div>
 </ion-content>

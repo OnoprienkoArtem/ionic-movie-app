@@ -1,7 +1,10 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { ActionSheetController } from '@ionic/angular';
+import { MovieService } from '../../providers/movie.service';
+import { LOCAL_CONFIG } from '../../config/config-api';
+import { ApiConfig } from '../../models/api';
 
 import { ConferenceData } from '../../providers/conference-data';
 
@@ -12,12 +15,14 @@ import { ConferenceData } from '../../providers/conference-data';
 })
 export class PeopleListPage {
   speakers: any[] = [];
+  public imgUrl: string = this.localConfig.midImgPath;
 
   constructor(
     public actionSheetCtrl: ActionSheetController,
     public confData: ConferenceData,
     public inAppBrowser: InAppBrowser,
-    public router: Router
+    public router: Router,
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) {}
 
   ionViewDidEnter() {

@@ -20,7 +20,6 @@ export class MovieService {
   }
 
   getListOfFavotitesFilms(user_id, session_id, page?) {
-    return this.http.get(`${this.localConfig.accountUrl}/${user_id}/favorite/movies?
-    api_key=${this.localConfig.apiKey}&session_id=${session_id}&language=ru-RU&page=${page}`);
+    return this.http.get(`${this.localConfig.accountUrl}/${user_id}/favorite/movies?api_key=${this.localConfig.apiKey}&session_id=${session_id}&language=ru-RU&page=${page}`);
   }
 }
