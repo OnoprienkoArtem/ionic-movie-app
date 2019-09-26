@@ -22,11 +22,10 @@ export class LoginPage {
   ) { }
 
   onLogin(form: NgForm) {
+    this.submitted = true;
     if (form.invalid) {
       return;
     }
-
-    this.submitted = true;
 
     if (form.valid) {
       this.userData.login(form.value.username);

@@ -1,13 +1,17 @@
 .login-logo {
-  padding: 20px 0;
-  min-height: 200px;
-  text-align: center;
+    padding: 20px 0;
+    min-height: 250px;
+    text-align: center;
 }
 
-.login-logo img {
-  max-width: 150px;
+.login-logo {
+    display: flex;
+    img {
+        max-width: 90%;
+        margin: auto;
+    }
 }
 
 .list {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
