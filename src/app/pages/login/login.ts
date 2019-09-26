@@ -4,10 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../providers/auth.service';
 
 import { UserData } from '../../providers/user-data';
-
 import { UserOptions } from '../../interfaces/user-options';
-
-
 
 @Component({
   selector: 'page-login',
@@ -25,30 +22,20 @@ export class LoginPage {
   ) { }
 
   onLogin(form: NgForm) {
-
     if (form.invalid) {
       return;
     }
 
     this.submitted = true;
 
-
-    console.log(form.value.username);
-    console.log(form.value.password);
-
-
     if (form.valid) {
       this.userData.login(form.value.username);
       this.authService.login(form.value.username, form.value.password);
     }
-
-
-
-
   }
 
 
-
+  
 
 
 }

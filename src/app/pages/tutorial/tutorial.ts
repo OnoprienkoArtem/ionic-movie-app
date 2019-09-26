@@ -1,5 +1,8 @@
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { MovieService } from '../../providers/movie.service';
+import { LOCAL_CONFIG } from '../../config/config-api';
+import { ApiConfig } from '../../models/api';
 
 import { MenuController, IonSlides } from '@ionic/angular';
 
@@ -10,16 +13,43 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'tutorial.html',
   styleUrls: ['./tutorial.scss'],
 })
-export class TutorialPage {
+export class TutorialPage implements OnInit  {
+
+  public imgUrl: string = this.localConfig.midImgPath;
   showSkip = true;
+  public films: any[] = [];
+  public filmsClone: any[] = [];
+  public actors: any[] = [];
+  public actorsClone: any[] = [];
 
   @ViewChild('slides', { static: true }) slides: IonSlides;
 
   constructor(
     public menu: MenuController,
     public router: Router,
-    public storage: Storage
+    public storage: Storage,
+    private movieService: MovieService,
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) {}
+
+  ngOnInit() {
+    this.movieService.getPopularFilms().subscribe(
+      (filmList: any) => {
+        this.filmsClone = filmList.results;
+        this.films = this.filmsClone.slice(0, 9);
+      },
+      err => console.log('error', err)
+    );
+
+    this.movieService.getPopularActors().subscribe(
+      (actorsList: any) => {
+        console.log(actorsList);
+        this.actorsClone = actorsList.results;
+        this.actors = this.actorsClone.slice(0, 9);
+      },
+      err => console.log('error', err)
+    );
+  }
 
   startApp() {
     this.router
