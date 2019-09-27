@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-
-import { ConferenceData } from '../../providers/conference-data';
+import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserData } from '../../providers/user-data';
+import { MovieService } from '../../providers/movie.service';
+import { LOCAL_CONFIG } from '../../config/config-api';
+import { ApiConfig } from '../../models/api';
 
 @Component({
   selector: 'page-movie-detail',
@@ -13,14 +14,18 @@ export class MovieDetailPage {
   session: any;
   isFavorite = false;
   defaultHref = '';
-  constructor(
-    private dataProvider: ConferenceData,
+  public movieDetails: any[];
+  constructor(    
     private userProvider: UserData,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public movieService: MovieService,
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) {}
+
   sessionClick(item: string) {
     console.log('Clicked', item);
   }
+
   toggleFavorite() {
     if (this.userProvider.hasFavorite(this.session.name)) {
       this.userProvider.removeFavorite(this.session.name);
@@ -30,30 +35,18 @@ export class MovieDetailPage {
       this.isFavorite = true;
     }
   }
+
   ionViewWillEnter() {
-    this.dataProvider.load().subscribe((data: any) => {
-      if (
-        data &&
-        data.schedule &&
-        data.schedule[0] &&
-        data.schedule[0].groups
-      ) {
-        const sessionId = this.route.snapshot.paramMap.get('sessionId');
-        for (const group of data.schedule[0].groups) {
-          if (group && group.sessions) {
-            for (const session of group.sessions) {
-              if (session && session.id === sessionId) {
-                this.session = session;
-                this.isFavorite = this.userProvider.hasFavorite(
-                  this.session.name
-                );
-                break;
-              }
-            }
-          }
-        }
-      }
+
+    const movieId = +this.route.snapshot.paramMap.get('id');
+
+    this.movieService.getFilmById(movieId).subscribe((filmList: any) => {
+      console.log(filmList);
+      this.movieDetails = filmList;
     });
+
+
+
   }
   ionViewDidEnter() {
     this.defaultHref = `/app/tabs/movie`;
