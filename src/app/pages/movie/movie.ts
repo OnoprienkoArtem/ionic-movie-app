@@ -28,7 +28,7 @@ export class MoviePage implements OnInit {
 
   public films: any;
   public favorites: any;
-  public imgUrl: string = this.localConfig.midImgPath;
+  public imgUrl: string = this.localConfig.smallBackPath;
 
   private userId = localStorage.getItem('user_id');
   private sessionId = localStorage.getItem('session_id');
@@ -70,10 +70,6 @@ export class MoviePage implements OnInit {
   }
 
 
-
-  showDetails(id) {
-    console.log(id);
-  }
 
 
 

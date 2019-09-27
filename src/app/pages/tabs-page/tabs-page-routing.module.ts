@@ -17,8 +17,8 @@ const routes: Routes = [
             component: MoviePage,
           },
           {
-            path: 'session/:sessionId',
-            loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
+            path: 'detail/:id',
+            loadChildren: () => import('../movie-detail/movie-detail.module').then(m => m.MovieDetailModule)
           }
         ]
       },
@@ -30,8 +30,8 @@ const routes: Routes = [
             loadChildren: () => import('../people-list/people-list.module').then(m => m.PeopleListModule)
           },
           {
-            path: 'session/:sessionId',
-            loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
+            path: 'detail/:id',
+            loadChildren: () => import('../movie-detail/movie-detail.module').then(m => m.MovieDetailModule)
           },
           {
             path: 'people-details/:speakerId',

@@ -7,7 +7,7 @@ import { TabsPageRoutingModule } from './tabs-page-routing.module';
 
 import { AboutModule } from '../about/about.module';
 import { MovieModule } from '../movie/movie.module';
-import { SessionDetailModule } from '../session-detail/session-detail.module';
+import { MovieDetailModule } from '../movie-detail/movie-detail.module';
 import { PeopleDetailModule } from '../people-detail/people-detail.module';
 import { PeopleListModule } from '../people-list/people-list.module';
 
@@ -17,7 +17,7 @@ import { PeopleListModule } from '../people-list/people-list.module';
     CommonModule,
     IonicModule,
     MovieModule,
-    SessionDetailModule,
+    MovieDetailModule,
     PeopleDetailModule,
     PeopleListModule,
     TabsPageRoutingModule
