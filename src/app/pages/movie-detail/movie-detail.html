@@ -3,11 +3,21 @@
         <ion-buttons slot="start">
             <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
         </ion-buttons>
-        <ion-title>{{session?.name}}</ion-title>
+        <ion-title>{{movieDetails?.title}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+    <div class="detail-header">
+        <img [src]="backdropPath" alt="">
+
+    </div>
+
+    <div>
+        <img class="poster" [src]="posterPath" alt="">
+        <p>{{overview}}</p>
+    </div>
 
 
     <!-- <div *ngIf="session" class="ion-padding">
@@ -30,7 +40,7 @@
         </ion-text>
     </div> -->
 
-    <ion-list>
+    <!-- <ion-list>
         <ion-item (click)="sessionClick('watch')" button>
             <ion-label color="primary">Watch</ion-label>
         </ion-item>
@@ -47,6 +57,6 @@
         <ion-item (click)="sessionClick('leave feedback')" button>
             <ion-label color="primary">Leave Feedback</ion-label>
         </ion-item>
-    </ion-list>
+    </ion-list> -->
 
 </ion-content>
