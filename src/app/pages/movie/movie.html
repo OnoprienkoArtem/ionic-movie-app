@@ -22,9 +22,9 @@
                 <ion-col size="6" *ngFor="let film of films">
                     <ion-card class="welcome-card" routerLink="/app/tabs/movie/detail/{{film.id}}">
                         <img src="{{imgUrl + film.poster_path}}" alt="" />
-                        <ion-card-header>
+                        <!-- <ion-card-header>
                             <ion-card-title>{{film.title}}</ion-card-title>
-                        </ion-card-header>
+                        </ion-card-header> -->
                     </ion-card>
                 </ion-col>
             </ion-row>
@@ -37,16 +37,16 @@
                 <ion-col size="6" *ngFor="let favorite of favorites">
                     <ion-card class="welcome-card" routerLink="/app/tabs/movie/detail/{{favorite.id}}">
                         <img src="{{imgUrl + favorite.poster_path}}" alt="" />
-                        <ion-card-header>
+                        <!-- <ion-card-header >
                             <ion-card-title>{{favorite.title}}</ion-card-title>
-                        </ion-card-header>
+                        </ion-card-header> -->
                     </ion-card>
                 </ion-col>
             </ion-row>
         </ion-grid>
     </ion-list>
 
-    <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
+    <!-- <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
         <ion-fab-button>
             <ion-icon name="share"></ion-icon>
         </ion-fab-button>
@@ -64,5 +64,5 @@
                 <ion-icon name="logo-facebook"></ion-icon>
             </ion-fab-button>
         </ion-fab-list>
-    </ion-fab>
+    </ion-fab> -->
 </ion-content>
