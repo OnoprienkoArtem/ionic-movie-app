@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Inject } from '@angular/core';
+import { Component, ViewChild, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, IonList, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { ConferenceData } from '../../providers/conference-data';
@@ -14,7 +14,7 @@ import { ApiConfig } from '../../models/api';
   templateUrl: 'movie.html',
   styleUrls: ['./movie.scss'],
 })
-export class MoviePage implements OnInit {
+export class MoviePage {
   // Gets a reference to the list element
   @ViewChild('scheduleList', { static: true }) scheduleList: IonList;
 
@@ -25,6 +25,7 @@ export class MoviePage implements OnInit {
   shownSessions: any = [];
   groups: any = [];
   confDate: string;
+  spinner = false;
 
   public films: any;
   public favorites: any;
@@ -45,7 +46,7 @@ export class MoviePage implements OnInit {
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.updateSchedule();
   }
 
@@ -57,6 +58,9 @@ export class MoviePage implements OnInit {
 
     this.movieService.getPopularFilms().subscribe((filmList: any) => {
       this.films = filmList.results;
+      if (filmList) {
+        this.spinner = true;
+      }
     });
 
     this.movieService.getListOfFavotitesFilms(this.userId, this.sessionId, 1).subscribe((favorites: any) => {
