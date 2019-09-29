@@ -77,21 +77,57 @@
     }
 }
 
-.poster {
-    width: 30%;
-    margin: 10px 0 10px 10px;
-}
-
-.movie-overview {
+.movie-title {
+    // font-family: 'Montserrat', sans-serif;
     display: flex;
-    img {
+    .poster {
+        width: 30%;
+        padding: 10px 0 10px 10px;
         max-height: 180px;
     }
-    p {
-        font-size: 14px;
-        margin: 10px;
+    .taglines {
+        display: block;
+        width: 70%;
+        padding: 0 10px;
+        h5 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        a {
+            font-size: 10px;
+            text-decoration: none;
+            font-style: italic;
+        }
+        .year {
+            font-size: 14px;
+            font-weight: 900;
+            color: silver;
+        }
+        .genre {
+            font-weight: 500;
+            font-size: 12px;
+        }
     }
-    h5 {
-        font-size: 16px;
+}
+
+.overview {
+    padding: 0 10px;
+}
+
+.production_companies {
+    display: flex;
+    padding: 0 20px;
+    span {
+        max-height: 100px;
+        padding: 10px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
     }
+}
+
+p {
+    margin: 10px 0;
 }

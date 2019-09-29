@@ -19,6 +19,7 @@ export class MovieDetailPage {
   public posterPath: string;
   overview: string;
   public imgUrl: string = this.localConfig.midImgPath;
+  logo_path: any[];
 
   constructor(    
     private userProvider: UserData,
@@ -51,6 +52,10 @@ export class MovieDetailPage {
       this.backdropPath = this.imgUrl + this.movieDetails.backdrop_path;
       this.posterPath = this.imgUrl + this.movieDetails.poster_path;
       this.overview = this.movieDetails.overview;
+
+      this.logo_path = this.movieDetails.production_companies.filter(item => item.logo_path !== null);
+
+      console.log(this.logo_path);
 
       console.log(this.imgUrl + this.movieDetails.poster_path);
     });
