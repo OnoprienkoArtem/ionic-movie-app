@@ -14,12 +14,17 @@
 
     </div>
 
-    <div>
+    <div class="movie-overview">
         <img class="poster" [src]="posterPath" alt="">
+        <p>{{movieDetails?.overview}}</p>
+
+        <!-- <div class="ion-padding-horizontal">
+            <h5>{{movieDetails?.title}}</h5>            
+        </div> -->
 
     </div>
 
-    <p class="ion-padding-horizontal">{{overview}}</p>
+
 
 
 

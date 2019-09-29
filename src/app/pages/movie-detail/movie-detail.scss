@@ -79,5 +79,19 @@
 
 .poster {
     width: 30%;
-    margin: 15px;
+    margin: 10px 0 10px 10px;
+}
+
+.movie-overview {
+    display: flex;
+    img {
+        max-height: 180px;
+    }
+    p {
+        font-size: 14px;
+        margin: 10px;
+    }
+    h5 {
+        font-size: 16px;
+    }
 }
