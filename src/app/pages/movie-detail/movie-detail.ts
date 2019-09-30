@@ -55,9 +55,7 @@ export class MovieDetailPage {
 
       this.logo_path = this.movieDetails.production_companies.filter(item => item.logo_path !== null);
 
-      console.log(this.logo_path);
-
-      console.log(this.imgUrl + this.movieDetails.poster_path);
+     
     });
 
 
