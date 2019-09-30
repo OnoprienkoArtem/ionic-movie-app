@@ -1,4 +1,4 @@
-import { Component, ViewChild, Inject } from '@angular/core';
+import { Component, ViewChild, Inject, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, IonList, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { ConferenceData } from '../../providers/conference-data';
@@ -8,13 +8,14 @@ import { UserData } from '../../providers/user-data';
 
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'page-movie',
   templateUrl: 'movie.html',
   styleUrls: ['./movie.scss'],
 })
-export class MoviePage {
+export class MoviePage implements OnDestroy {
   // Gets a reference to the list element
   @ViewChild('scheduleList', { static: true }) scheduleList: IonList;
 
@@ -33,6 +34,9 @@ export class MoviePage {
 
   private userId = localStorage.getItem('user_id');
   private sessionId = localStorage.getItem('session_id');
+
+  private movieSubscription: Subscription;
+  movieObject: any;
 
   constructor(
     public alertCtrl: AlertController,
@@ -56,14 +60,23 @@ export class MoviePage {
       this.scheduleList.closeSlidingItems();
     }
 
-    this.movieService.getPopularFilms().subscribe((filmList: any) => {
-      this.films = filmList.results;
-      if (filmList) {
-        this.spinner = true;
-      }
+    this.movieSubscription = this.movieService.movieDetails.subscribe(data => {
+      this.movieObject = data;
+      console.log('movie object ==> ', this.movieObject);
     });
 
-    this.movieService.getListOfFavotitesFilms(this.userId, this.sessionId, 1).subscribe((favorites: any) => {
+    this.movieService.getPopularFilms();
+
+    // this.movieService.getPopularFilms().subscribe((filmList: any) => {
+    //   this.films = filmList.results;
+    //   if (filmList) {
+    //     this.spinner = true;
+    //   }
+    // });
+
+
+
+    this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1).subscribe((favorites: any) => {
       this.favorites = favorites.results;
     });
 
@@ -141,5 +154,9 @@ export class MoviePage {
     await loading.present();
     await loading.onWillDismiss();
     fab.close();
+  }
+
+  ngOnDestroy() {
+    this.movieSubscription.unsubscribe();
   }
 }
