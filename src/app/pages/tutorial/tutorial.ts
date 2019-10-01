@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MovieService } from '../../providers/movie.service';
 import { LOCAL_CONFIG } from '../../config/config-api';
@@ -7,13 +7,14 @@ import { ApiConfig } from '../../models/api';
 import { MenuController, IonSlides } from '@ionic/angular';
 
 import { Storage } from '@ionic/storage';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'page-tutorial',
   templateUrl: 'tutorial.html',
   styleUrls: ['./tutorial.scss'],
 })
-export class TutorialPage implements OnInit {
+export class TutorialPage implements OnInit, OnDestroy {
 
   public imgUrl: string = this.localConfig.midImgPath;
   showSkip = true;
@@ -21,6 +22,7 @@ export class TutorialPage implements OnInit {
   public filmsClone: any[] = [];
   public actors: any[] = [];
   public actorsClone: any[] = [];
+  private movieSubscription: Subscription;
 
   @ViewChild('slides', { static: true }) slides: IonSlides;
 
@@ -33,13 +35,21 @@ export class TutorialPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.movieService.getPopularFilms().subscribe(
-      (filmList: any) => {
-        this.filmsClone = filmList.results;
-        this.films = this.filmsClone.slice(0, 9);
-      },
-      err => console.log('error', err)
-    );
+
+    this.movieSubscription = this.movieService.movieDetails.subscribe(data => {
+      this.filmsClone = data.results;
+      this.films = this.filmsClone.slice(0, 9);
+    });
+    this.movieService.getPopularFilms();
+
+
+    // this.movieService.getPopularFilms().subscribe(
+    //   (filmList: any) => {
+    //     this.filmsClone = filmList.results;
+    //     this.films = this.filmsClone.slice(0, 9);
+    //   },
+    //   err => console.log('error', err)
+    // );
 
     this.movieService.getPopularActors().subscribe(
       (actorsList: any) => {
@@ -76,5 +86,9 @@ export class TutorialPage implements OnInit {
   ionViewDidLeave() {
     // enable the root left menu when leaving the tutorial page
     this.menu.enable(true);
+  }
+
+  ngOnDestroy() {
+    this.movieSubscription.unsubscribe();
   }
 }

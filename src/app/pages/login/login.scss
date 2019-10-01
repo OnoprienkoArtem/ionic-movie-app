@@ -6,6 +6,10 @@
 
 .login-logo {
     display: flex;
+    background-image: url(assets/img/red_pipes.svg);
+    background-size: 150%;
+    background-position: center;
+    background-repeat: no-repeat;
     img {
         max-width: 90%;
         margin: auto;
@@ -14,4 +18,13 @@
 
 .list {
     margin-bottom: 0;
+}
+
+.login-container {
+    background-image: radial-gradient(at 25% top, #32112c 0%, #0a1526 40%);
+    height: 100%;
+}
+
+.btn-section {
+    background-color: #fff;
 }
