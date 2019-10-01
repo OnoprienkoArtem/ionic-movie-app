@@ -6,6 +6,9 @@ import { AuthService } from '../../providers/auth.service';
 import { UserData } from '../../providers/user-data';
 import { UserOptions } from '../../interfaces/user-options';
 
+
+import { ToastController } from '@ionic/angular';
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -18,7 +21,8 @@ export class LoginPage {
   constructor(
     private authService: AuthService,
     public userData: UserData,
-    public router: Router
+    public router: Router,
+    public toastController: ToastController
   ) { }
 
   onLogin(form: NgForm) {
@@ -34,7 +38,15 @@ export class LoginPage {
   }
 
 
-  
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Your settings have been saved.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
 
 
 }
+
