@@ -28,8 +28,11 @@ export class LoginPage {
   onLogin(form: NgForm) {
     this.submitted = true;
     if (form.invalid) {
+      this.presentToast('danger');
       return;
     }
+
+    this.presentToast('success');
 
     if (form.valid) {
       this.userData.login(form.value.username);
@@ -38,10 +41,11 @@ export class LoginPage {
   }
 
 
-  async presentToast() {
+  async presentToast(res: string) {
     const toast = await this.toastController.create({
       message: 'Your settings have been saved.',
-      duration: 2000
+      duration: 2000,
+      color: res
     });
     toast.present();
   }
