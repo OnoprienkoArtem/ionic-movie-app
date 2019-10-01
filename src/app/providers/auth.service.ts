@@ -8,6 +8,8 @@ import { delay, concatMap } from 'rxjs/internal/operators';
 import { Subject, Observable, interval } from 'rxjs';
 import { mergeMap, tap, map, debounceTime } from 'rxjs/operators';
 
+import { ToastController } from '@ionic/angular';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +21,8 @@ export class AuthService {
     private http: HttpClient,
     public router: Router,
     // public messagesService: MessagesService,
-    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
+    public toastController: ToastController
   ) {
     this.loggedIn = !!localStorage.getItem('auth_token');
   }
@@ -28,11 +31,26 @@ export class AuthService {
     return this.loggedIn;
   }
 
+
+  async presentToast(res: string, msg: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+      color: res
+    });
+    toast.present();
+  }
+
+
+
+
+
   getToken() {
     return this.http.get(`${this.localConfig.tokenUrl}?api_key=${this.localConfig.apiKey}`);
   }
 
   authenticationToken(requst_token: string, username: string, password: string) {
+    // tslint:disable-next-line: max-line-length
     return this.http.get(`${this.localConfig.authenticationUrl}?username=${username}&password=${password}&request_token=${requst_token}&api_key=${this.localConfig.apiKey}`);
   }
 
@@ -70,10 +88,10 @@ export class AuthService {
         if (session.success) {
           localStorage.setItem('session_id', session.session_id);
           this.loggedIn = true;
-          // this.messagesService.messageAction(true);
+          this.presentToast('success', 'Successfully login');
         }
         return this.getUserData(session.session_id).pipe(
-          delay(2200),
+          delay(2300),
           tap((user: any) => {
             console.log(user);
             if (session.success) {
@@ -88,7 +106,7 @@ export class AuthService {
     .subscribe((user: any) => {
       console.log('user', user);
     },
-      // err => this.messagesService.messageAction(false)
+      err => this.presentToast('danger', 'Error login')
     );
   }
 
