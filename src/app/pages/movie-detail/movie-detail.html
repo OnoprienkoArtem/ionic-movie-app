@@ -10,17 +10,17 @@
 <ion-content>
 
     <div class="detail-header">
-        <img [src]="backdropPath" alt="">
+        <img [src]="imgUrl + movieDetails?.backdrop_path" alt="">
     </div>
 
     <div class="movie-title">
-        <img class="poster" [src]="posterPath" alt="">
+        <img class="poster" [src]="imgUrl + movieDetails?.poster_path" alt="">
         <div class="taglines">
             <h5>{{movieDetails?.tagline}}</h5>
             <p class='year'>{{movieDetails?.release_date | date: 'yyyy'}}</p>
             <p class="genre">
                 <span *ngFor="let genre of movieDetails?.genres">
-                  <span>{{genre.name}} / </span>
+                  <span>{{genre.name}}/</span>
                 </span>
             </p>
             <p class="budget" [hidden]="!movieDetails?.budget">{{movieDetails?.budget}}$ </p>

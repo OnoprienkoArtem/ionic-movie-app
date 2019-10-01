@@ -15,11 +15,8 @@ export class MovieDetailPage {
   isFavorite = false;
   defaultHref = '';
   public movieDetails: any;
-  public backdropPath: string;
-  public posterPath: string;
-  overview: string;
   public imgUrl: string = this.localConfig.midImgPath;
-  logo_path: any[];
+  public logo_path: any[];
 
   constructor(    
     private userProvider: UserData,
@@ -49,13 +46,7 @@ export class MovieDetailPage {
       // console.log(filmList);
       this.movieDetails = filmList;
       console.log(this.movieDetails);
-      this.backdropPath = this.imgUrl + this.movieDetails.backdrop_path;
-      this.posterPath = this.imgUrl + this.movieDetails.poster_path;
-      this.overview = this.movieDetails.overview;
-
       this.logo_path = this.movieDetails.production_companies.filter(item => item.logo_path !== null);
-
-     
     });
 
 

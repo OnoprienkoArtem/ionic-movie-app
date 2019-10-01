@@ -57,9 +57,10 @@ export class MoviePage implements OnDestroy, OnInit {
   ngOnInit() {
     this.movieSubscription = this.movieService.movieDetails.subscribe(data => {
       this.movieObject = data;
+      this.spinner = false;
       console.log('movie object ==> ', this.movieObject);
     });
-
+    this.spinner = true;
     this.movieService.getPopularFilms();
   }
 
