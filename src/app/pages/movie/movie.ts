@@ -1,4 +1,4 @@
-import { Component, ViewChild, Inject, OnDestroy } from '@angular/core';
+import { Component, ViewChild, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, IonList, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { ConferenceData } from '../../providers/conference-data';
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
   templateUrl: 'movie.html',
   styleUrls: ['./movie.scss'],
 })
-export class MoviePage implements OnDestroy {
+export class MoviePage implements OnDestroy, OnInit {
   // Gets a reference to the list element
   @ViewChild('scheduleList', { static: true }) scheduleList: IonList;
 
@@ -54,18 +54,22 @@ export class MoviePage implements OnDestroy {
     this.updateSchedule();
   }
 
-  updateSchedule() {
-    // Close any open sliding items when the schedule updates
-    if (this.scheduleList) {
-      this.scheduleList.closeSlidingItems();
-    }
-
+  ngOnInit() {
     this.movieSubscription = this.movieService.movieDetails.subscribe(data => {
       this.movieObject = data;
       console.log('movie object ==> ', this.movieObject);
     });
 
     this.movieService.getPopularFilms();
+  }
+
+  updateSchedule() {
+    // Close any open sliding items when the schedule updates
+    if (this.scheduleList) {
+      this.scheduleList.closeSlidingItems();
+    }
+
+
 
     // this.movieService.getPopularFilms().subscribe((filmList: any) => {
     //   this.films = filmList.results;

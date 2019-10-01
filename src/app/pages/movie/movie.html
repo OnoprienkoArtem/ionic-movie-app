@@ -1,6 +1,6 @@
-<div [hidden]="spinner" class="spinner">
+<!-- <div [hidden]="spinner" class="spinner">
     <ion-spinner name="dots"></ion-spinner>
-</div>
+</div> -->
 
 <ion-header>
     <ion-toolbar>
@@ -23,9 +23,9 @@
     <ion-list #scheduleList [hidden]="shownSessions === 0">
         <ion-grid>
             <ion-row>
-                <ion-col size="6" *ngFor="let film of films">
-                    <ion-card class="welcome-card" routerLink="/app/tabs/movie/detail/{{film.id}}">
-                        <img src="{{imgUrl + film.poster_path}}" alt="" />
+                <ion-col size="6" *ngFor="let movie of movieObject?.results">
+                    <ion-card class="welcome-card" routerLink="/app/tabs/movie/detail/{{movie.id}}">
+                        <img src="{{imgUrl + movie.poster_path}}" alt="" />
                         <!-- <ion-card-header>
                             <ion-card-title>{{film.title}}</ion-card-title>
                         </ion-card-header> -->
