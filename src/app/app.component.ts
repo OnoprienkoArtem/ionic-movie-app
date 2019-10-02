@@ -21,7 +21,7 @@ import { AuthService } from './providers/auth.service';
 export class AppComponent implements OnInit {
   appPages = [
     {
-      title: 'Movie',
+      title: 'Movies',
       url: '/app/tabs/movie',
       icon: 'film'
     },
