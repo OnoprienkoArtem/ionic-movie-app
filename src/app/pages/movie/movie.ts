@@ -64,16 +64,14 @@ export class MoviePage implements OnDestroy, OnInit {
     this.movieSubscription = this.movieService.movieDetails.subscribe(data => {
       this.movieObject = data;
       this.spinner = false;
-      console.log('movie object ==> ', this.movieObject);
     });
     this.spinner = true;
     this.movieService.getPopularFilms();
 
 
     this.movieFavoritesSubscription = this.movieService.movieFavorites.subscribe(data => {
-      this.favorites = data.results;
+      this.favorites = data;
       this.spinner = false;
-      console.log('movie favorites object ==> ', this.favorites);
     });
     this.spinner = true;
     this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1);
@@ -99,7 +97,13 @@ export class MoviePage implements OnDestroy, OnInit {
 
   }
 
+  getContent() {
+    return document.querySelector('ion-content');
+  }
 
+  logScrollStart() {
+    this.getContent().scrollToTop(500);
+  }
 
 
 
