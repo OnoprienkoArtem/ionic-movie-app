@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 })
 export class MoviePage implements OnDestroy, OnInit {
   // Gets a reference to the list element
-  @ViewChild('scheduleList', { static: true }) scheduleList: IonList;
+  // @ViewChild('scheduleList', { static: true }) scheduleList: IonList;
 
   dayIndex = 0;
   queryText = '';
@@ -36,6 +36,7 @@ export class MoviePage implements OnDestroy, OnInit {
   private sessionId = localStorage.getItem('session_id');
 
   private movieSubscription: Subscription;
+  private movieFavoritesSubscription: Subscription;
   movieObject: any;
 
   constructor(
@@ -55,6 +56,11 @@ export class MoviePage implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
+   
+  }
+
+  updateSchedule() {
+
     this.movieSubscription = this.movieService.movieDetails.subscribe(data => {
       this.movieObject = data;
       this.spinner = false;
@@ -62,16 +68,15 @@ export class MoviePage implements OnDestroy, OnInit {
     });
     this.spinner = true;
     this.movieService.getPopularFilms();
-  }
-
-  updateSchedule() {
-    // Close any open sliding items when the schedule updates
-    if (this.scheduleList) {
-      this.scheduleList.closeSlidingItems();
-    }
 
 
-
+    this.movieFavoritesSubscription = this.movieService.movieFavorites.subscribe(data => {
+      this.favorites = data.results;
+      this.spinner = false;
+      console.log('movie favorites object ==> ', this.favorites);
+    });
+    this.spinner = true;
+    this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1);
     // this.movieService.getPopularFilms().subscribe((filmList: any) => {
     //   this.films = filmList.results;
     //   if (filmList) {
@@ -81,14 +86,17 @@ export class MoviePage implements OnDestroy, OnInit {
 
 
 
-    this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1).subscribe((favorites: any) => {
-      this.favorites = favorites.results;
-    });
+    // this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1).subscribe((favorites: any) => {
+    //   this.favorites = favorites.results;
+    // });
 
-    this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
-      this.shownSessions = data.shownSessions;
-      this.groups = data.groups;
-    });
+    // this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
+    //   this.shownSessions = data.shownSessions;
+    //   console.log(data.shownSessions);
+    //   this.groups = data.groups;
+    // });
+
+
   }
 
 
@@ -163,5 +171,6 @@ export class MoviePage implements OnDestroy, OnInit {
 
   ngOnDestroy() {
     this.movieSubscription.unsubscribe();
+    this.movieFavoritesSubscription.unsubscribe();
   }
 }

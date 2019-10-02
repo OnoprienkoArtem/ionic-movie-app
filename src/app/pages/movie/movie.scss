@@ -7,11 +7,6 @@ $value in map-remove($categories) {
     }
 }
 
-.welcome-card img {
-    max-height: 35vh;
-    overflow: hidden;
-}
-
 ion-card {
     margin: 0;
 }
@@ -33,6 +28,10 @@ ion-card-title {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.welcome-card {
+    height: 22vh;
 }
 
 ion-fab {
@@ -58,5 +57,15 @@ ion-fab-button {
     background-color: rgba(255, 255, 255, .8);
     ion-spinner {
         margin: auto;
+    }
+}
+
+ion-item {
+    min-height: 24px !important;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    ion-badge {
+        margin: 0 5px;
     }
 }
