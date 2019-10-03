@@ -22,7 +22,7 @@ ion-card-title {
     font-size: 14px;
 }
 
-.welcome-card img {
+.small-cards img {
     // max-height: 30vh;
     overflow: hidden;
     width: 100%;
@@ -30,7 +30,7 @@ ion-card-title {
     object-fit: cover;
 }
 
-.welcome-card {
+.small-cards {
     height: 22vh;
 }
 
@@ -68,4 +68,8 @@ ion-item {
     ion-badge {
         margin: 0 5px;
     }
+}
+
+.numbers {
+    font-size: 14px;
 }

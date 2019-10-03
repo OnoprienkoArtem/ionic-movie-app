@@ -9,6 +9,7 @@ import { UserData } from '../../providers/user-data';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
 import { Subscription } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'page-movie',
@@ -37,7 +38,11 @@ export class MoviePage implements OnDestroy, OnInit {
 
   private movieSubscription: Subscription;
   private movieFavoritesSubscription: Subscription;
+
   movieObject: any;
+
+  firstPart: any;
+  secondPart: any;
 
   constructor(
     public alertCtrl: AlertController,
@@ -55,14 +60,13 @@ export class MoviePage implements OnDestroy, OnInit {
     this.updateSchedule();
   }
 
-  ngOnInit() {
-   
-  }
+  ngOnInit() { }
 
   updateSchedule() {
-
-    this.movieSubscription = this.movieService.movieDetails.subscribe(data => {
+     this.movieSubscription = this.movieService.movieDetails.subscribe(data => {
       this.movieObject = data;
+      this.firstPart = this.movieObject.results.slice(0, 2);
+      this.secondPart = this.movieObject.results.slice(2);
       this.spinner = false;
     });
     this.spinner = true;

@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
       icon: 'film'
     },
     {
-      title: 'Peoples',
+      title: 'People',
       url: '/app/tabs/people',
       icon: 'contacts'
     },
