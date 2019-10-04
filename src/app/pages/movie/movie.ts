@@ -56,41 +56,49 @@ export class MoviePage implements OnDestroy, OnInit {
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) { }
 
-  ionViewWillEnter() {
-    this.updateSchedule();
+  ionViewWillEnter(e) {
+    this.updateSchedule(e);
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
-  updateSchedule() {
-     this.movieSubscription = this.movieService.movieDetails.subscribe(data => {
-      this.movieObject = data;
-      this.firstPart = this.movieObject.results.slice(0, 2);
-      this.secondPart = this.movieObject.results.slice(2);
-      this.spinner = false;
-    });
-    this.spinner = true;
-    this.movieService.getPopularFilms();
+  updateSchedule(e) {
+
+    console.log(e);
+
+    console.log(this.segment);
+
+    if (this.segment === 'all') {
+      this.getData('movieDetails');
+      this.movieService.getPopularFilms();
+    }
+
+    if (this.segment === 'favorites') {
+      this.getData('movieFavorites');
+      this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1);
+
+    }
 
 
-    this.movieFavoritesSubscription = this.movieService.movieFavorites.subscribe(data => {
-      this.favorites = data;
-      this.spinner = false;
-    });
-    this.spinner = true;
-    this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1);
-    // this.movieService.getPopularFilms().subscribe((filmList: any) => {
-    //   this.films = filmList.results;
-    //   if (filmList) {
-    //     this.spinner = true;
-    //   }
+
+      // this.movieSubscription = this.movieService.movieDetails.subscribe(data => {
+      //   this.movieObject = data;
+      //   this.firstPart = this.movieObject.results.slice(0, 2);
+      //   this.secondPart = this.movieObject.results.slice(2);
+      //   this.spinner = false;
+      // });
+      // this.spinner = true;
+
+
+
+    // this.movieFavoritesSubscription = this.movieService.movieFavorites.subscribe(data => {
+    //   this.favorites = data;
+    //   this.spinner = false;
     // });
+    // this.spinner = true;
+    // this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1);
 
 
-
-    // this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1).subscribe((favorites: any) => {
-    //   this.favorites = favorites.results;
-    // });
 
     // this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
     //   this.shownSessions = data.shownSessions;
@@ -101,12 +109,14 @@ export class MoviePage implements OnDestroy, OnInit {
 
   }
 
-  getContent() {
-    return document.querySelector('ion-content');
-  }
-
-  logScrollStart() {
-    this.getContent().scrollToTop(500);
+  getData(src) {
+    this.movieSubscription = this.movieService[src].subscribe(data => {
+      this.movieObject = data;
+      this.firstPart = this.movieObject.results.slice(0, 2);
+      this.secondPart = this.movieObject.results.slice(2);
+      this.spinner = false;
+    });
+    this.spinner = true;
   }
 
 
