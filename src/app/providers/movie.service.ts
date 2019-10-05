@@ -15,6 +15,10 @@ export class MovieService {
   constructor(public http: HttpClient, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) { }
 
 
+
+  
+
+
   getPopularFilms(page?: number) {
     this.http.get(`${this.localConfig.movieUrl}/popular${this.localConfig.params}&page=${page}`).subscribe(data => {
       this.movieDetails.next(data);

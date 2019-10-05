@@ -64,19 +64,20 @@ export class MoviePage implements OnDestroy, OnInit {
 
   updateSchedule(e) {
 
-    console.log(e);
+    // console.log(e);
 
-    console.log(this.segment);
+    // console.log(this.segment);
 
     if (this.segment === 'all') {
       this.getData('movieDetails');
+      console.log('all');
       this.movieService.getPopularFilms();
     }
 
     if (this.segment === 'favorites') {
       this.getData('movieFavorites');
+      console.log('favorites');
       this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1);
-
     }
 
 
@@ -112,6 +113,7 @@ export class MoviePage implements OnDestroy, OnInit {
   getData(src) {
     this.movieSubscription = this.movieService[src].subscribe(data => {
       this.movieObject = data;
+      console.log('data 114', data);
       this.firstPart = this.movieObject.results.slice(0, 2);
       this.secondPart = this.movieObject.results.slice(2);
       this.spinner = false;
@@ -165,7 +167,7 @@ export class MoviePage implements OnDestroy, OnInit {
           handler: () => {
             // they want to remove this session from their favorites
             this.user.removeFavorite(sessionData.name);
-            this.updateSchedule();
+            this.updateSchedule(e);
 
             // close the sliding item and hide the option buttons
             slidingItem.close();
