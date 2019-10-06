@@ -56,48 +56,48 @@ export class MoviePage implements OnDestroy, OnInit {
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) { }
 
-  ionViewWillEnter(e) {
-    this.updateSchedule(e);
+  ionViewWillEnter() {
+    this.updateSchedule();
   }
 
   ngOnInit() {}
 
-  updateSchedule(e) {
+  updateSchedule() {
 
     // console.log(e);
 
     // console.log(this.segment);
 
-    // if (this.segment === 'all') {
-    //   this.getData('movieDetails');
-    //   console.log('all');
-    //   this.movieService.getPopularFilms();
-    // }
+    if (this.segment === 'all') {
+      this.getData('movieDetails');
+      console.log('all');
+      this.movieService.getPopularFilms();
+    }
 
-    // if (this.segment === 'favorites') {
-    //   this.getData('movieFavorites');
-    //   console.log('favorites');
-    //   this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1);
-    // }
-
-
-
-      this.movieSubscription = this.movieService.getPopularFilms().subscribe(data => {
-        this.movieObject = data;
-        console.log(this.movieObject);
-        this.firstPart = this.movieObject.results.slice(0, 2);
-        this.secondPart = this.movieObject.results.slice(2);
-        this.spinner = false;
-      });
-      this.spinner = true;
+    if (this.segment === 'favorites') {
+      this.getData('movieFavorites');
+      console.log('favorites');
+      this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1);
+    }
 
 
 
-    this.movieFavoritesSubscription = this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1).subscribe(data => {
-      this.favorites = data;
-      this.spinner = false;
-    });
-    this.spinner = true;
+      // this.movieSubscription = this.movieService.getPopularFilms().subscribe(data => {
+      //   this.movieObject = data;
+      //   console.log(this.movieObject);
+      //   this.firstPart = this.movieObject.results.slice(0, 2);
+      //   this.secondPart = this.movieObject.results.slice(2);
+      //   this.spinner = false;
+      // });
+      // this.spinner = true;
+
+
+
+    // this.movieFavoritesSubscription = this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1).subscribe(data => {
+    //   this.favorites = data;
+    //   this.spinner = false;
+    // });
+    // this.spinner = true;
 
     
 
@@ -169,7 +169,7 @@ export class MoviePage implements OnDestroy, OnInit {
           handler: () => {
             // they want to remove this session from their favorites
             this.user.removeFavorite(sessionData.name);
-            this.updateSchedule(e);
+            this.updateSchedule();
 
             // close the sliding item and hide the option buttons
             slidingItem.close();

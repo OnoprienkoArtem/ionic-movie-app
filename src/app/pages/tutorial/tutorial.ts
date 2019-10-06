@@ -62,9 +62,10 @@ export class TutorialPage implements OnInit, OnDestroy {
   }
 
   startApp() {
-    this.router
-      .navigateByUrl('/app/tabs/movie')
-      .then(() => this.storage.set('ion_did_tutorial', true));
+    this.router.navigateByUrl('/app/tabs/movie');
+    // this.router
+    //   .navigateByUrl('/app/tabs/movie')
+    //   .then(() => this.storage.set('ion_did_tutorial', true));
   }
 
   onSlideChangeStart(event) {
