@@ -21,7 +21,7 @@
 
 <ion-content>
 
-    <ion-list>
+    <ion-list *ngIf="segment==='all'">
         <ion-grid class="ion-no-padding">
             <ion-row>
                 <ion-col size="6" class="ion-no-padding">
@@ -53,12 +53,12 @@
         </ion-grid>
     </ion-list>
 
-    <!-- <ion-list *ngIf="segment==='favorites'">
+    <ion-list *ngIf="segment==='favorites'">
         <ion-grid class="ion-no-padding">
             <ion-row>
                 <ion-col size="6" class="ion-no-padding">
                     <ion-item lines="none">
-                        <ion-icon name="film"></ion-icon>                        
+                        <ion-icon name="film"></ion-icon>
                         <ion-label>{{favorites?.total_results}} movies</ion-label>
                     </ion-item>
                 </ion-col>
@@ -78,7 +78,7 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-    </ion-list> -->
+    </ion-list>
 
 
 

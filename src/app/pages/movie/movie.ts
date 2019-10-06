@@ -68,36 +68,38 @@ export class MoviePage implements OnDestroy, OnInit {
 
     // console.log(this.segment);
 
-    if (this.segment === 'all') {
-      this.getData('movieDetails');
-      console.log('all');
-      this.movieService.getPopularFilms();
-    }
+    // if (this.segment === 'all') {
+    //   this.getData('movieDetails');
+    //   console.log('all');
+    //   this.movieService.getPopularFilms();
+    // }
 
-    if (this.segment === 'favorites') {
-      this.getData('movieFavorites');
-      console.log('favorites');
-      this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1);
-    }
-
-
-
-      // this.movieSubscription = this.movieService.movieDetails.subscribe(data => {
-      //   this.movieObject = data;
-      //   this.firstPart = this.movieObject.results.slice(0, 2);
-      //   this.secondPart = this.movieObject.results.slice(2);
-      //   this.spinner = false;
-      // });
-      // this.spinner = true;
+    // if (this.segment === 'favorites') {
+    //   this.getData('movieFavorites');
+    //   console.log('favorites');
+    //   this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1);
+    // }
 
 
 
-    // this.movieFavoritesSubscription = this.movieService.movieFavorites.subscribe(data => {
-    //   this.favorites = data;
-    //   this.spinner = false;
-    // });
-    // this.spinner = true;
-    // this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1);
+      this.movieSubscription = this.movieService.getPopularFilms().subscribe(data => {
+        this.movieObject = data;
+        console.log(this.movieObject);
+        this.firstPart = this.movieObject.results.slice(0, 2);
+        this.secondPart = this.movieObject.results.slice(2);
+        this.spinner = false;
+      });
+      this.spinner = true;
+
+
+
+    this.movieFavoritesSubscription = this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1).subscribe(data => {
+      this.favorites = data;
+      this.spinner = false;
+    });
+    this.spinner = true;
+
+    
 
 
 
