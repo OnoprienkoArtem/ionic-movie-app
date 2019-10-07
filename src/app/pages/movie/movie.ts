@@ -56,27 +56,24 @@ export class MoviePage implements OnDestroy, OnInit {
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) { }
 
-  ionViewWillEnter() {
+  ionViewWillEnter() {}
+
+  ngOnInit() {
     this.updateSchedule();
   }
 
-  ngOnInit() {}
-
   updateSchedule() {
 
-    // console.log(e);
-
-    // console.log(this.segment);
 
     if (this.segment === 'all') {
       this.getData('movieDetails');
-      console.log('all');
+      // console.log('all');
       this.movieService.getPopularFilms();
     }
 
     if (this.segment === 'favorites') {
       this.getData('movieFavorites');
-      console.log('favorites');
+      // console.log('favorites');
       this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1);
     }
 
@@ -91,16 +88,11 @@ export class MoviePage implements OnDestroy, OnInit {
       // });
       // this.spinner = true;
 
-
-
     // this.movieFavoritesSubscription = this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1).subscribe(data => {
     //   this.favorites = data;
     //   this.spinner = false;
     // });
     // this.spinner = true;
-
-    
-
 
 
     // this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
@@ -115,7 +107,7 @@ export class MoviePage implements OnDestroy, OnInit {
   getData(src) {
     this.movieSubscription = this.movieService[src].subscribe(data => {
       this.movieObject = data;
-      console.log('data 114', data);
+      // console.log('data 114', data);
       this.firstPart = this.movieObject.results.slice(0, 2);
       this.secondPart = this.movieObject.results.slice(2);
       this.spinner = false;
