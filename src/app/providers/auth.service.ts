@@ -97,7 +97,7 @@ export class AuthService {
             if (session.success) {
               localStorage.setItem('user_name', user.username);
               localStorage.setItem('user_id', user.id);
-              this.router.navigateByUrl('/app/tabs/about');
+              this.router.navigateByUrl('/app/tabs/movies');
             }
           })
         );

@@ -11,6 +11,8 @@ import { Storage } from '@ionic/storage';
 
 import { UserData } from './providers/user-data';
 
+import { AuthService } from './providers/auth.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -49,6 +51,7 @@ export class AppComponent implements OnInit {
     private userData: UserData,
     private swUpdate: SwUpdate,
     private toastCtrl: ToastController,
+    private authService: AuthService
   ) {
     this.initializeApp();
   }
@@ -56,6 +59,8 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     this.checkLoginStatus();
     this.listenForLoginEvents();
+
+    console.log(this.loggedIn);
 
     this.swUpdate.available.subscribe(async res => {
       const toast = await this.toastCtrl.create({
@@ -98,16 +103,14 @@ export class AppComponent implements OnInit {
       this.updateLoggedInStatus(true);
     });
 
-    this.events.subscribe('user:signup', () => {
-      this.updateLoggedInStatus(true);
-    });
-
     this.events.subscribe('user:logout', () => {
       this.updateLoggedInStatus(false);
     });
   }
 
   logout() {
+    this.authService.logout();
+
     this.userData.logout().then(() => {
       return this.router.navigateByUrl('/app/tabs/movies');
     });
