@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, IonList, LoadingController, ModalController, ToastController, Config } from '@ionic/angular';
 
@@ -6,12 +6,17 @@ import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
 import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
 
+import { MovieService } from '../../providers/movie.service';
+import { LOCAL_CONFIG } from '../../config/config-api';
+import { ApiConfig } from '../../models/api';
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'page-schedule',
   templateUrl: 'schedule.html',
   styleUrls: ['./schedule.scss'],
 })
-export class SchedulePage implements OnInit {
+export class SchedulePage implements OnInit, OnDestroy {
   // Gets a reference to the list element
   @ViewChild('scheduleList', { static: true }) scheduleList: IonList;
 
@@ -24,6 +29,13 @@ export class SchedulePage implements OnInit {
   groups: any = [];
   confDate: string;
 
+  private movieSubscription: Subscription;
+  public imgUrl: string = this.localConfig.smallBackPath;
+  public movieObject: any;
+  public firstPart: any;
+  public secondPart: any;
+  public spinner = false;
+
   constructor(
     public alertCtrl: AlertController,
     public confData: ConferenceData,
@@ -32,7 +44,9 @@ export class SchedulePage implements OnInit {
     public router: Router,
     public toastCtrl: ToastController,
     public user: UserData,
-    public config: Config
+    public config: Config,
+    public movieService: MovieService,
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) { }
 
   ngOnInit() {
@@ -51,6 +65,17 @@ export class SchedulePage implements OnInit {
     //   this.shownSessions = data.shownSessions;
     //   this.groups = data.groups;
     // });
+
+    this.movieSubscription = this.movieService.getPopularFilms().subscribe(data => {
+      this.movieObject = data;
+      console.log(this.movieObject);
+      this.firstPart = this.movieObject.results.slice(0, 2);
+      this.secondPart = this.movieObject.results.slice(2);
+      this.spinner = false;
+    });
+    this.spinner = true;
+
+
   }
 
   async presentFilter() {
@@ -131,5 +156,10 @@ export class SchedulePage implements OnInit {
     await loading.present();
     await loading.onWillDismiss();
     fab.close();
+  }
+
+  ngOnDestroy() {
+    this.movieSubscription.unsubscribe();
+    // this.movieFavoritesSubscription.unsubscribe();
   }
 }
