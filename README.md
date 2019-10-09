@@ -1,13 +1,12 @@
 # Ionic Angular Movie Application
 
+
 ## Table of Contents
 - [Getting Started](#getting-started)
-- [App Preview](#app-preview)
 - [Deploying](#deploying)
   - [Progressive Web App](#progressive-web-app)
   - [Android](#android)
   - [iOS](#ios)
-
 
 ## Getting Started
 
@@ -15,16 +14,8 @@
 * Install the ionic CLI globally: `npm install -g ionic`
 * Run `npm install` from the project root.
 * Run `ionic serve` in a terminal from the project root.
+* Profit. :tada:
 
-
-## App Preview
-
-All app preview screenshots were taken by running `ionic serve --lab` on a retina display.
-
-  <img src="" alt="Schedule">
-
-  <img src="" alt="Schedule">
-  
 
 ## Deploying
 

@@ -1,6 +1,6 @@
 {
-  "name": "Ionic Conference",
-  "short_name": "Ionic Conference",
+  "name": "ionic movie app",
+  "short_name": "ionic-movie-app",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [

@@ -11,14 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-
-import { LOCAL_CONFIG, localConfig } from './config/config-api';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -26,8 +26,7 @@ import { LOCAL_CONFIG, localConfig } from './config/config-api';
     })
   ],
   declarations: [AppComponent],
-  providers: [InAppBrowser, SplashScreen, StatusBar,
-    {provide: LOCAL_CONFIG, useValue: localConfig}],
+  providers: [InAppBrowser, SplashScreen, StatusBar],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

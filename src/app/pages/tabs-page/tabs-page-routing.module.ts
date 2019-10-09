@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs-page';
-import { MoviePage } from '../movie/movie';
+import { SchedulePage } from '../schedule/schedule';
 
 
 const routes: Routes = [
@@ -10,32 +10,32 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'movie',
+        path: 'schedule',
         children: [
           {
             path: '',
-            component: MoviePage,
+            component: SchedulePage,
           },
           {
-            path: 'detail/:id',
-            loadChildren: () => import('../movie-detail/movie-detail.module').then(m => m.MovieDetailModule)
+            path: 'session/:sessionId',
+            loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
           }
         ]
       },
       {
-        path: 'people',
+        path: 'speakers',
         children: [
           {
             path: '',
-            loadChildren: () => import('../people-list/people-list.module').then(m => m.PeopleListModule)
+            loadChildren: () => import('../speaker-list/speaker-list.module').then(m => m.SpeakerListModule)
           },
           {
-            path: 'detail/:id',
-            loadChildren: () => import('../movie-detail/movie-detail.module').then(m => m.MovieDetailModule)
+            path: 'session/:sessionId',
+            loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
           },
           {
-            path: 'people-details/:speakerId',
-            loadChildren: () => import('../people-detail/people-detail.module').then(m => m.PeopleDetailModule)
+            path: 'speaker-details/:speakerId',
+            loadChildren: () => import('../speaker-detail/speaker-detail.module').then(m => m.SpeakerDetailModule)
           }
         ]
       },
@@ -50,7 +50,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/app/tabs/movie',
+        redirectTo: '/app/tabs/schedule',
         pathMatch: 'full'
       }
     ]

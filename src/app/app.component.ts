@@ -10,7 +10,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 
 import { UserData } from './providers/user-data';
-import { AuthService } from './providers/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -21,13 +20,13 @@ import { AuthService } from './providers/auth.service';
 export class AppComponent implements OnInit {
   appPages = [
     {
-      title: 'Movies',
-      url: '/app/tabs/movie',
-      icon: 'film'
+      title: 'Schedule',
+      url: '/app/tabs/schedule',
+      icon: 'calendar'
     },
     {
-      title: 'People',
-      url: '/app/tabs/people',
+      title: 'Speakers',
+      url: '/app/tabs/speakers',
       icon: 'contacts'
     },
     {
@@ -37,6 +36,7 @@ export class AppComponent implements OnInit {
     }
   ];
   loggedIn = false;
+  dark = false;
 
   constructor(
     private events: Events,
@@ -49,7 +49,6 @@ export class AppComponent implements OnInit {
     private userData: UserData,
     private swUpdate: SwUpdate,
     private toastCtrl: ToastController,
-    private authService: AuthService
   ) {
     this.initializeApp();
   }
@@ -99,26 +98,20 @@ export class AppComponent implements OnInit {
       this.updateLoggedInStatus(true);
     });
 
+    this.events.subscribe('user:signup', () => {
+      this.updateLoggedInStatus(true);
+    });
+
     this.events.subscribe('user:logout', () => {
       this.updateLoggedInStatus(false);
     });
   }
 
-
-
-
   logout() {
-    this.authService.logout();
-
     this.userData.logout().then(() => {
-      return this.router.navigateByUrl('/app/tabs/movie');
+      return this.router.navigateByUrl('/app/tabs/schedule');
     });
   }
-
-
-
-
-
 
   openTutorial() {
     this.menu.enable(false);

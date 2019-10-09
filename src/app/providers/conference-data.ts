@@ -1,10 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { LOCAL_CONFIG } from '../config/config-api';
-import { ApiConfig } from '../models/api';
 
 import { UserData } from './user-data';
 
@@ -14,7 +11,7 @@ import { UserData } from './user-data';
 export class ConferenceData {
   data: any;
 
-  constructor(public http: HttpClient, public user: UserData, @Inject(LOCAL_CONFIG) public localConfig: ApiConfig) {}
+  constructor(public http: HttpClient, public user: UserData) {}
 
   load(): any {
     if (this.data) {
@@ -25,8 +22,6 @@ export class ConferenceData {
         .pipe(map(this.processData, this));
     }
   }
-
-
 
   processData(data: any) {
     // just some good 'ol JS fun with objects and arrays
