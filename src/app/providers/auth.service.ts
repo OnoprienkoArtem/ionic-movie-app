@@ -14,7 +14,6 @@ import { ToastController } from '@ionic/angular';
     providedIn: 'root'
 })
 export class AuthService {
-<<<<<<< HEAD
     private loggedIn = false;
     public user: any;
 
@@ -44,94 +43,6 @@ export class AuthService {
     getToken() {
         return this.http.get(
             `${this.localConfig.tokenUrl}?api_key=${this.localConfig.apiKey}`
-=======
-  private loggedIn = false;
-  public user: any;
-
-  constructor(
-    private http: HttpClient,
-    public router: Router,
-    // public messagesService: MessagesService,
-    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
-    public toastController: ToastController
-  ) {
-    this.loggedIn = !!localStorage.getItem('auth_token');
-  }
-
-  isLoggedIn() {
-    return this.loggedIn;
-  }
-
-
-  async presentToast(res: string, msg: string) {
-    const toast = await this.toastController.create({
-      message: msg,
-      duration: 2000,
-      color: res
-    });
-    toast.present();
-  }
-
-
-
-
-
-  getToken() {
-    return this.http.get(`${this.localConfig.tokenUrl}?api_key=${this.localConfig.apiKey}`);
-  }
-
-  authenticationToken(requst_token: string, username: string, password: string) {
-    // tslint:disable-next-line: max-line-length
-    return this.http.get(`${this.localConfig.authenticationUrl}?username=${username}&password=${password}&request_token=${requst_token}&api_key=${this.localConfig.apiKey}`);
-  }
-
-  getSession(requst_token: string) {
-    return this.http.get(`${this.localConfig.sessionUrl}/new?api_key=${this.localConfig.apiKey}&request_token=${requst_token}`);
-  }
-
-  getUserData(session_id: string) {
-    return this.http.get(`${this.localConfig.accountUrl}?api_key=${this.localConfig.apiKey}&session_id=${session_id}`);
-  }
-
-  removeSession(httpParams) {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      body: httpParams
-    };
-
-    return this.http.delete(`${this.localConfig.sessionUrl}?api_key=${this.localConfig.apiKey}`, httpOptions);
-  }
-
-
-  login(username: string, password: string) {
-    return this.getToken().pipe(
-      concatMap((token: any) => {
-        console.log('token', token);
-        return this.authenticationToken(token.request_token, username, password);
-      }),
-      concatMap((token: any) => {
-        console.log(token);
-        localStorage.setItem('auth_token', token.request_token);
-        return this.getSession(token.request_token);
-      }),
-      concatMap((session: any) => {
-        console.log('token', session);
-        if (session.success) {
-          localStorage.setItem('session_id', session.session_id);
-          this.loggedIn = true;
-          this.presentToast('success', 'Successfully login');
-        }
-        return this.getUserData(session.session_id).pipe(
-          delay(2300),
-          tap((user: any) => {
-            console.log(user);
-            if (session.success) {
-              localStorage.setItem('user_name', user.username);
-              localStorage.setItem('user_id', user.id);
-              this.router.navigateByUrl('/app/tabs/movies');
-            }
-          })
->>>>>>> b6c4a4b9d83b8fdc086b5999411adc835e136715
         );
     }
 

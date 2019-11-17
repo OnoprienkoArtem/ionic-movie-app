@@ -9,7 +9,6 @@ import { Subject } from 'rxjs';
     providedIn: 'root'
 })
 export class MovieService {
-<<<<<<< HEAD
     movieDetails = new Subject<any>();
     movieFavorites = new Subject<any>();
 
@@ -56,26 +55,4 @@ export class MovieService {
             `${this.localConfig.movieUrl}/${id}${this.localConfig.params}`
         );
     }
-=======
-
-  constructor(
-    public http: HttpClient,
-    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
-  ) { }
-
-
-  getPopularFilms(page?: number) {
-    return this.http.get(`${this.localConfig.movieUrl}/popular${this.localConfig.params}&page=${page}`);
-  }
-
-  getListOfFavoritesFilms(user_id, session_id, page?) {
-    // tslint:disable-next-line: max-line-length
-    return this.http.get(`${this.localConfig.accountUrl}/${user_id}/favorite/movies?api_key=${this.localConfig.apiKey}&session_id=${session_id}&language=ru-RU&page=${page}`);
-  }
-
-  getFilmById(id?: number) {
-    return this.http.get(`${this.localConfig.movieUrl}/${id}${this.localConfig.params}`);
-  }
-
->>>>>>> b6c4a4b9d83b8fdc086b5999411adc835e136715
 }
