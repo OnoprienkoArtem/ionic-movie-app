@@ -18,7 +18,7 @@ import { map, tap } from 'rxjs/operators';
 })
 export class MoviePage implements OnDestroy, OnInit {
   // Gets a reference to the list element
-  // @ViewChild('scheduleList', { static: true }) scheduleList: IonList;
+  @ViewChild('scheduleList', { static: true }) scheduleList: IonList;
 
   dayIndex = 0;
   queryText = '';
@@ -64,7 +64,9 @@ export class MoviePage implements OnDestroy, OnInit {
   }
 
   updateSchedule() {
-
+    if (this.scheduleList) {
+      this.scheduleList.closeSlidingItems();
+    }
 
     // if (this.segment === 'all') {
     //   this.getData('movieDetails');
@@ -80,27 +82,27 @@ export class MoviePage implements OnDestroy, OnInit {
 
 
 
-      this.movieSubscription = this.movieService.getPopularFilms().subscribe(data => {
-        this.movieObject = data;
-        console.log(this.movieObject);
-        this.firstPart = this.movieObject.results.slice(0, 2);
-        this.secondPart = this.movieObject.results.slice(2);
-        this.spinner = false;
-      });
-      this.spinner = true;
+    //   this.movieSubscription = this.movieService.getPopularFilms().subscribe(data => {
+    //     this.movieObject = data;
+        
+    //     this.firstPart = this.movieObject.results.slice(0, 2);
+    //     this.secondPart = this.movieObject.results.slice(2);
+    //     this.spinner = false;
+    //   });
+    //   this.spinner = true;
 
-    this.movieFavoritesSubscription = this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1).subscribe(data => {
-      this.favorites = data;
-      this.spinner = false;
-    });
-    this.spinner = true;
-
-
-    // this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
-    //   this.shownSessions = data.shownSessions;
-    //   console.log(data.shownSessions);
-    //   this.groups = data.groups;
+    // this.movieFavoritesSubscription = this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1).subscribe(data => {
+    //   this.favorites = data;
+    //   this.spinner = false;
     // });
+    // this.spinner = true;
+
+
+    this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
+      console.log(data);
+      this.shownSessions = data.shownSessions;
+      this.groups = data.groups;
+    });
 
 
   }
