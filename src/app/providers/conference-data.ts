@@ -1,10 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-import { LOCAL_CONFIG } from '../config/config-api';
-import { ApiConfig } from '../models/api';
 
 import { UserData } from './user-data';
 
@@ -58,8 +55,12 @@ export class ConferenceData {
             });
         });
 
+<<<<<<< HEAD
         return this.data;
     }
+=======
+  constructor(public http: HttpClient, public user: UserData) {}
+>>>>>>> b6c4a4b9d83b8fdc086b5999411adc835e136715
 
     getTimeline(
         dayIndex: number,
@@ -101,6 +102,7 @@ export class ConferenceData {
             })
         );
     }
+<<<<<<< HEAD
 
     filterSession(
         session: any,
@@ -115,6 +117,32 @@ export class ConferenceData {
                 if (session.name.toLowerCase().indexOf(queryWord) > -1) {
                     matchesQueryText = true;
                 }
+=======
+  }
+
+  processData(data: any) {
+    // just some good 'ol JS fun with objects and arrays
+    // build up the data by linking speakers to sessions
+    this.data = data;
+
+    // loop through each day in the schedule
+    this.data.schedule.forEach((day: any) => {
+      // loop through each timeline group in the day
+      day.groups.forEach((group: any) => {
+        // loop through each session in the timeline group
+        group.sessions.forEach((session: any) => {
+          session.speakers = [];
+          if (session.speakerNames) {
+            session.speakerNames.forEach((speakerName: any) => {
+              const speaker = this.data.speakers.find(
+                (s: any) => s.name === speakerName
+              );
+              if (speaker) {
+                session.speakers.push(speaker);
+                speaker.sessions = speaker.sessions || [];
+                speaker.sessions.push(session);
+              }
+>>>>>>> b6c4a4b9d83b8fdc086b5999411adc835e136715
             });
         } else {
             // if there are no query words then this session passes the query test

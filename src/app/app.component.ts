@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
 
 import { UserData } from './providers/user-data';
+
 import { AuthService } from './providers/auth.service';
 
 @Component({
@@ -22,12 +23,12 @@ export class AppComponent implements OnInit {
   appPages = [
     {
       title: 'Movies',
-      url: '/app/tabs/movie',
+      url: '/app/tabs/movies',
       icon: 'film'
     },
     {
-      title: 'People',
-      url: '/app/tabs/people',
+      title: 'Speakers',
+      url: '/app/tabs/speakers',
       icon: 'contacts'
     },
     {
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit {
     }
   ];
   loggedIn = false;
+  dark = false;
 
   constructor(
     private events: Events,
@@ -57,6 +59,8 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     this.checkLoginStatus();
     this.listenForLoginEvents();
+
+    console.log(this.loggedIn);
 
     this.swUpdate.available.subscribe(async res => {
       const toast = await this.toastCtrl.create({
@@ -104,21 +108,13 @@ export class AppComponent implements OnInit {
     });
   }
 
-
-
-
   logout() {
     this.authService.logout();
 
     this.userData.logout().then(() => {
-      return this.router.navigateByUrl('/app/tabs/movie');
+      return this.router.navigateByUrl('/app/tabs/movies');
     });
   }
-
-
-
-
-
 
   openTutorial() {
     this.menu.enable(false);

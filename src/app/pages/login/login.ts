@@ -2,12 +2,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../providers/auth.service';
-
 import { UserData } from '../../providers/user-data';
 import { UserOptions } from '../../interfaces/user-options';
-
-
-
 
 @Component({
   selector: 'page-login',
@@ -26,6 +22,7 @@ export class LoginPage {
 
   onLogin(form: NgForm) {
     this.submitted = true;
+
     if (form.invalid) {
       this.authService.presentToast('warning', 'Validation error');
       return;
@@ -37,10 +34,4 @@ export class LoginPage {
     }
   }
 
-
-
-
-
-
 }
-

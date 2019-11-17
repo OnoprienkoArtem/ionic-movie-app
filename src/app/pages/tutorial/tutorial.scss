@@ -1,14 +1,11 @@
 ion-toolbar {
-    // TODO test transparent and fullscreen
-    --background: transparent;
-    --border-color: transparent;
-}
-
-.swiper-container {
-    height: 100%;
+  // TODO test transparent and fullscreen
+  --background: transparent;
+  --border-color: transparent;
 }
 
 .swiper-slide {
+<<<<<<< HEAD
     display: block;
     overflow: hidden;
 }
@@ -25,31 +22,28 @@ ion-toolbar {
     img {
         width: 60%;
     }
+=======
+  display: block;
+>>>>>>> b6c4a4b9d83b8fdc086b5999411adc835e136715
 }
 
-.text {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    background: white;
-    padding: 25px;
+.slide-title {
+  margin-top: 2.8rem;
 }
 
 .slide-image {
-    max-height: 50%;
-    max-width: 40%;
-    margin: 36px 0;
-}
-
-.slide-image.last {
-    max-width: 60%;
+  max-height: 50%;
+  max-width: 60%;
+  margin: 36px 0;
+  pointer-events: none;
 }
 
 b {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 p {
+<<<<<<< HEAD
     padding: 0 40px;
     font-size: 14px;
     line-height: 1.5;
@@ -59,8 +53,14 @@ p {
         color: #000000;
     }
 }
+=======
+  padding: 0 40px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ion-color-step-600, #60646b);
+>>>>>>> b6c4a4b9d83b8fdc086b5999411adc835e136715
 
-.card-container {
-    height: 100%;
-    filter: blur(3px);
+  b {
+    color: var(--ion-text-color, #000000);
+  }
 }
