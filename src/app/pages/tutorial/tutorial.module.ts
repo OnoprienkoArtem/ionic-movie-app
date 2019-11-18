@@ -6,12 +6,8 @@ import { TutorialPage } from './tutorial';
 import { TutorialPageRoutingModule } from './tutorial-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    IonicModule,
-    TutorialPageRoutingModule
-  ],
-  declarations: [TutorialPage],
-  entryComponents: [TutorialPage],
+    imports: [CommonModule, IonicModule, TutorialPageRoutingModule],
+    declarations: [TutorialPage],
+    entryComponents: [TutorialPage]
 })
 export class TutorialModule {}
