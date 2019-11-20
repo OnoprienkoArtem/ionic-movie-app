@@ -12,18 +12,16 @@ import { SpeakerDetailModule } from '../speaker-detail/speaker-detail.module';
 import { SpeakerListModule } from '../speaker-list/speaker-list.module';
 
 @NgModule({
-  imports: [
-    AboutModule,
-    CommonModule,
-    IonicModule,
-    MoviesModule,
-    SessionDetailModule,
-    SpeakerDetailModule,
-    SpeakerListModule,
-    TabsPageRoutingModule
-  ],
-  declarations: [
-    TabsPage,
-  ]
+    imports: [
+        AboutModule,
+        CommonModule,
+        IonicModule,
+        MoviesModule,
+        SessionDetailModule,
+        SpeakerDetailModule,
+        SpeakerListModule,
+        TabsPageRoutingModule
+    ],
+    declarations: [TabsPage]
 })
-export class TabsModule { }
+export class TabsModule {}
