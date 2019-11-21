@@ -7,15 +7,8 @@ import { MoviesPage } from './movies';
 import { MoviesPageRoutingModule } from './movies-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    MoviesPageRoutingModule
-  ],
-  declarations: [
-    MoviesPage
-  ],
-  entryComponents: []
+    imports: [CommonModule, FormsModule, IonicModule, MoviesPageRoutingModule],
+    declarations: [MoviesPage],
+    entryComponents: []
 })
-export class MoviesModule { }
+export class MoviesModule {}
