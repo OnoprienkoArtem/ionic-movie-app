@@ -6,11 +6,7 @@ import { SpeakerListPage } from './speaker-list';
 import { SpeakerListPageRoutingModule } from './speaker-list-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    IonicModule,
-    SpeakerListPageRoutingModule
-  ],
-  declarations: [SpeakerListPage],
+    imports: [CommonModule, IonicModule, SpeakerListPageRoutingModule],
+    declarations: [SpeakerListPage]
 })
 export class SpeakerListModule {}
