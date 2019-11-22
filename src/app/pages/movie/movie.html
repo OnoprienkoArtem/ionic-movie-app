@@ -16,15 +16,11 @@
     <!-- <ion-toolbar>
         <ion-searchbar [(ngModel)]="queryText" (ionChange)="updateSchedule()" placeholder="Search"></ion-searchbar>
     </ion-toolbar> -->
-
 </ion-header>
 
 <ion-content>
-
     <ion-list #scheduleList [hidden]="shownSessions === 0">
         <!-- <movie-list [data]=" movieObject "></movie-list> -->
-
-
 
         <ion-item-group *ngFor="let group of groups" [hidden]="group.hide">
             <ion-item-divider sticky>
@@ -33,31 +29,41 @@
                 </ion-label>
             </ion-item-divider>
 
-            <ion-item-sliding *ngFor="let session of group.sessions" #slidingItem [attr.track]="session.tracks[0] | lowercase" [hidden]="session.hide">
-                <ion-item routerLink="/app/tabs/schedule/session/{{session.id}}">
+            <ion-item-sliding
+                *ngFor="let session of group.sessions"
+                #slidingItem
+                [attr.track]="session.tracks[0] | lowercase"
+                [hidden]="session.hide"
+            >
+                <ion-item
+                    routerLink="/app/tabs/schedule/session/{{session.id}}"
+                >
                     <ion-label>
                         <h3>{{session.name}}</h3>
                         <p>
-                            {{session.timeStart}} &mdash; {{session.timeEnd}}: {{session.location}}
+                            {{session.timeStart}} &mdash; {{session.timeEnd}}:
+                            {{session.location}}
                         </p>
                     </ion-label>
                 </ion-item>
                 <ion-item-options>
-                    <ion-item-option color="favorite" (click)="addFavorite(slidingItem, session)" *ngIf="segment === 'all'">
+                    <ion-item-option
+                        color="favorite"
+                        (click)="addFavorite(slidingItem, session)"
+                        *ngIf="segment === 'all'"
+                    >
                         Favorite
                     </ion-item-option>
-                    <ion-item-option color="danger" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')" *ngIf="segment === 'favorites'">
+                    <ion-item-option
+                        color="danger"
+                        (click)="removeFavorite(slidingItem, session, 'Remove Favorite')"
+                        *ngIf="segment === 'favorites'"
+                    >
                         Remove
                     </ion-item-option>
                 </ion-item-options>
             </ion-item-sliding>
         </ion-item-group>
-
-
-
-
-
-
 
         <!-- <ion-grid class="ion-no-padding ">
             <ion-row>
@@ -121,9 +127,6 @@
             </ion-row>
         </ion-grid> -->
     <!-- </ion-list> -->
-
-
-
 
     <!-- <ion-fab slot="fixed " vertical="bottom " horizontal="end " #fab>
         <ion-fab-button>
