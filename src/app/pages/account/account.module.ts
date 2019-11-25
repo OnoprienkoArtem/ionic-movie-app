@@ -6,13 +6,7 @@ import { AccountPage } from './account';
 import { AccountPageRoutingModule } from './account-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    IonicModule,
-    AccountPageRoutingModule
-  ],
-  declarations: [
-    AccountPage,
-  ]
+    imports: [CommonModule, IonicModule, AccountPageRoutingModule],
+    declarations: [AccountPage]
 })
-export class AccountModule { }
+export class AccountModule {}
