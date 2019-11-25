@@ -16,19 +16,24 @@ import { FormsModule } from '@angular/forms';
 import { LOCAL_CONFIG, localConfig } from './config/config-api';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    IonicModule.forRoot(),
-    IonicStorageModule.forRoot(),
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production
-    })
-  ],
-  declarations: [AppComponent],
-  providers: [InAppBrowser, SplashScreen, StatusBar, { provide: LOCAL_CONFIG, useValue: localConfig }],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        IonicModule.forRoot(),
+        IonicStorageModule.forRoot(),
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production
+        })
+    ],
+    declarations: [AppComponent],
+    providers: [
+        InAppBrowser,
+        SplashScreen,
+        StatusBar,
+        { provide: LOCAL_CONFIG, useValue: localConfig }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

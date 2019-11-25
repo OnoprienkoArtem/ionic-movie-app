@@ -7,14 +7,9 @@ import { AboutPage } from './about';
 import { AboutPageRoutingModule } from './about-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    AboutPageRoutingModule
-  ],
-  declarations: [AboutPage],
-  entryComponents: [],
-  bootstrap: [AboutPage],
+    imports: [CommonModule, FormsModule, IonicModule, AboutPageRoutingModule],
+    declarations: [AboutPage],
+    entryComponents: [],
+    bootstrap: [AboutPage]
 })
 export class AboutModule {}
