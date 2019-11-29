@@ -60,9 +60,9 @@ export class MoviePage implements OnDestroy, OnInit {
         public user: UserData,
         public movieService: MovieService,
         @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
-    ) {}
+    ) { }
 
-    ionViewWillEnter() {}
+    ionViewWillEnter() { }
 
     ngOnInit() {
         this.updateSchedule();
