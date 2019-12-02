@@ -1,0 +1,7 @@
+{
+  "name": "ionic-movie-app",
+  "type": "angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
