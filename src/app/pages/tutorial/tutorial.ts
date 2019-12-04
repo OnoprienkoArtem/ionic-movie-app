@@ -1,70 +1,30 @@
-import { Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController, IonSlides } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
-import { Subscription } from 'rxjs';
 
-import { MovieService } from '../../providers/movie.service';
-import { LOCAL_CONFIG } from '../../config/config-api';
-import { ApiConfig } from '../../models/api';
+import { MenuController, IonSlides } from '@ionic/angular';
+
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-tutorial',
   templateUrl: 'tutorial.html',
   styleUrls: ['./tutorial.scss'],
 })
-export class TutorialPage implements OnInit, OnDestroy {
-
-  public imgUrl: string = this.localConfig.midImgPath;
+export class TutorialPage {
   showSkip = true;
-  public films: any[] = [];
-  public filmsClone: any[] = [];
-  public actors: any[] = [];
-  public actorsClone: any[] = [];
-  private movieSubscription: Subscription;
 
   @ViewChild('slides', { static: true }) slides: IonSlides;
 
   constructor(
     public menu: MenuController,
     public router: Router,
-    public storage: Storage,
-    private movieService: MovieService,
-    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
-  ) { }
-
-  ngOnInit() {
-
-    this.movieSubscription = this.movieService.movieDetails.subscribe(data => {
-      this.filmsClone = data.results;
-      this.films = this.filmsClone.slice(0, 9);
-    });
-    this.movieService.getPopularFilms();
-
-
-    // this.movieService.getPopularFilms().subscribe(
-    //   (filmList: any) => {
-    //     this.filmsClone = filmList.results;
-    //     this.films = this.filmsClone.slice(0, 9);
-    //   },
-    //   err => console.log('error', err)
-    // );
-
-    this.movieService.getPopularActors().subscribe(
-      (actorsList: any) => {
-        console.log(actorsList);
-        this.actorsClone = actorsList.results;
-        this.actors = this.actorsClone.slice(0, 9);
-      },
-      err => console.log('error', err)
-    );
-  }
+    public storage: Storage
+  ) {}
 
   startApp() {
-    return this.router.navigateByUrl('/app/tabs/movie');
-    // this.router
-    //   .navigateByUrl('/app/tabs/movie')
-    //   .then(() => this.storage.set('ion_did_tutorial', true));
+    this.router
+      .navigateByUrl('/app/tabs/movies', { replaceUrl: true })
+      .then(() => this.storage.set('ion_did_tutorial', true));
   }
 
   onSlideChangeStart(event) {
@@ -76,7 +36,7 @@ export class TutorialPage implements OnInit, OnDestroy {
   ionViewWillEnter() {
     this.storage.get('ion_did_tutorial').then(res => {
       if (res === true) {
-        this.router.navigateByUrl('/app/tabs/movie');
+        this.router.navigateByUrl('/app/tabs/movies', { replaceUrl: true });
       }
     });
 
@@ -86,9 +46,5 @@ export class TutorialPage implements OnInit, OnDestroy {
   ionViewDidLeave() {
     // enable the root left menu when leaving the tutorial page
     this.menu.enable(true);
-  }
-
-  ngOnDestroy() {
-    this.movieSubscription.unsubscribe();
   }
 }
