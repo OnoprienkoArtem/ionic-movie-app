@@ -59,25 +59,25 @@ export class MoviesPage implements OnInit, OnDestroy {
   }
 
   updateSchedule() {
-    this.movieSubscription = this.movieService.getPopularFilms().subscribe(data => {
-      this.movieObject = data;
-      console.log(this.movieObject);
-      this.firstPart = this.movieObject.results.slice(0, 2);
-      this.secondPart = this.movieObject.results.slice(2);
-      this.spinner = false;
-    });
+    this.movieSubscription = this.movieService.getPopularFilms()
+      .subscribe(data => {
+        this.movieObject = data;
+        console.log(this.movieObject);
+        this.firstPart = this.movieObject.results.slice(0, 2);
+        this.secondPart = this.movieObject.results.slice(2);
+        this.spinner = false;
+      });
     this.spinner = true;
 
-    this.movieFavoritesSubscription = this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1).subscribe(data => {
-      this.favoritesObj = data;
-      console.log(this.movieObject);
-      this.firstFavoritePart = this.favoritesObj.results.slice(0, 2);
-      this.secondFavoritePart = this.favoritesObj.results.slice(2);
-      this.spinner = false;
-    });
+    this.movieFavoritesSubscription = this.movieService.getListOfFavoritesFilms(this.userId, this.sessionId, 1)
+      .subscribe(data => {
+        this.favoritesObj = data;
+        console.log(this.movieObject);
+        this.firstFavoritePart = this.favoritesObj.results.slice(0, 2);
+        this.secondFavoritePart = this.favoritesObj.results.slice(2);
+        this.spinner = false;
+      });
     this.spinner = true;
-
-
   }
 
   ngOnDestroy() {

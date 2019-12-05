@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MenuController, IonSlides } from '@ionic/angular';
 
 import { Storage } from '@ionic/storage';
-
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'page-tutorial',
   templateUrl: 'tutorial.html',
@@ -15,11 +15,42 @@ export class TutorialPage {
 
   @ViewChild('slides', { static: true }) slides: IonSlides;
 
+  private movieSubscription: Subscription;
+
   constructor(
     public menu: MenuController,
     public router: Router,
-    public storage: Storage
+    public storage: Storage,
+    private movieService: MovieService,
   ) {}
+
+
+  ngOnInit() {
+
+    this.movieSubscription = this.movieService.movieDetails.subscribe(data => {
+      this.filmsClone = data.results;
+      this.films = this.filmsClone.slice(0, 9);
+    });
+    this.movieService.getPopularFilms();
+
+
+    // this.movieService.getPopularFilms().subscribe(
+    //   (filmList: any) => {
+    //     this.filmsClone = filmList.results;
+    //     this.films = this.filmsClone.slice(0, 9);
+    //   },
+    //   err => console.log('error', err)
+    // );
+
+    this.movieService.getPopularActors().subscribe(
+      (actorsList: any) => {
+        console.log(actorsList);
+        this.actorsClone = actorsList.results;
+        this.actors = this.actorsClone.slice(0, 9);
+      },
+      err => console.log('error', err)
+    );
+  }
 
   startApp() {
     this.router
@@ -47,4 +78,11 @@ export class TutorialPage {
     // enable the root left menu when leaving the tutorial page
     this.menu.enable(true);
   }
+
+  ngOnDestroy() {
+    this.movieSubscription.unsubscribe();
+  }
+
+
+
 }
