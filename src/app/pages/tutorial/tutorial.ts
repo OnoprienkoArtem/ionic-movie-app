@@ -12,13 +12,16 @@ import { LOCAL_CONFIG } from '../../config/config-api';
   styleUrls: ['./tutorial.scss'],
 })
 export class TutorialPage implements OnInit, OnDestroy {
-  
+
   showSkip = true;
   public films: any[] = [];
   public filmsClone: any[] = [];
-  @ViewChild('slides', { static: true }) slides: IonSlides;
+  public actors: any[] = [];
+  public actorsClone: any[] = [];
   public imgUrl: string = this.localConfig.midImgPath;
   private movieSubscription: Subscription;
+
+  @ViewChild('slides', { static: true }) slides: IonSlides;
 
   constructor(
     public menu: MenuController,
@@ -31,21 +34,20 @@ export class TutorialPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.movieSubscription = this.movieService.getPopularFilms().subscribe(
-      (data: any) => {
-        this.filmsClone = data.results;
+      (filmList: any) => {
+        this.filmsClone = filmList.results;
         this.films = this.filmsClone.slice(0, 9);
       },
       err => console.log('error', err)
     );
 
-    // this.movieService.getPopularActors().subscribe(
-    //   (actorsList: any) => {
-    //     console.log(actorsList);
-    //     this.actorsClone = actorsList.results;
-    //     this.actors = this.actorsClone.slice(0, 9);
-    //   },
-    //   err => console.log('error', err)
-    // );
+    this.movieService.getPopularActors().subscribe(
+      (actorsList: any) => {
+        this.actorsClone = actorsList.results;
+        this.actors = this.actorsClone.slice(0, 9);
+      },
+      err => console.log('error', err)
+    );
   }
 
   startApp() {
