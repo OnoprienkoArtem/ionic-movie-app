@@ -16,20 +16,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./movies.scss'],
 })
 export class MoviesPage implements OnInit, OnDestroy {
-  // Gets a reference to the list element
-  @ViewChild('scheduleList', { static: true }) scheduleList: IonList;
 
-  ios: boolean;
-  dayIndex = 0;
-  queryText = '';
-  segment = 'all';
-  excludeTracks: any = [];
-  shownSessions: any = [];
-  groups: any = [];
-  confDate: string;
+  @ViewChild('scheduleList', { static: true }) scheduleList: IonList;
 
   private movieSubscription: Subscription;
   private movieFavoritesSubscription: Subscription;
+  private userId = localStorage.getItem('user_id');
+  private sessionId = localStorage.getItem('session_id');
+  public segment = 'all';
   public imgUrl: string = this.localConfig.smallBackPath;
   public movieObject: any;
   public firstPart: any;
@@ -38,8 +32,6 @@ export class MoviesPage implements OnInit, OnDestroy {
   public firstFavoritePart: any;
   public secondFavoritePart: any;
   public spinner = false;
-  private userId = localStorage.getItem('user_id');
-  private sessionId = localStorage.getItem('session_id');
 
   constructor(
     public alertCtrl: AlertController,
