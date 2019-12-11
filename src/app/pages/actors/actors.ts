@@ -13,7 +13,7 @@ export class ActorsPage implements OnInit, OnDestroy {
 
   private actorsSubscription: Subscription;
   public imgUrl: string = this.localConfig.smallBackPath;
-  public movieObject: any;
+  public actorsObject: any;
   public firstPart: any;
   public secondPart: any;
   public spinner = false;
@@ -27,21 +27,18 @@ export class ActorsPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.actorsSubscription = this.movieService.getPopularActors()
       .subscribe(data => {
-        console.log('actors =====>>>', data);
-        this.movieObject = data;
-        
-        this.firstPart = this.movieObject.results.slice(0, 2);
-        this.secondPart = this.movieObject.results.slice(2);
+        this.actorsObject = data;
+        console.log(this.actorsObject);
+        this.firstPart = this.actorsObject.results.slice(0, 2);
+        this.secondPart = this.actorsObject.results.slice(2);
         this.spinner = false;
       });
-
+    this.spinner = true;
   }
 
   ngOnDestroy() {
     this.actorsSubscription.unsubscribe();
   }
-
-
 
 
 }
