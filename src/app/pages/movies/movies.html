@@ -38,7 +38,9 @@
         </ion-col>
         <ion-col size="4" *ngFor="let movie of secondPart">
           <ion-card class="small-cards">
-              <img src="{{imgUrl + movie?.poster_path}} " alt=" " routerLink="/app/tabs/movie/detail/{{movie?.id}}" />
+            <span routerLink="/app/tabs/movie/detail/{{movie?.id}}">
+              <img src="{{imgUrl + movie?.poster_path}} " alt=" "  />
+            </span>              
           </ion-card>
         </ion-col>
       </ion-row>
