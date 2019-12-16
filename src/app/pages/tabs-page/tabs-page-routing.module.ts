@@ -16,10 +16,10 @@ const routes: Routes = [
             path: '',
             component: MoviesPage,
           },
-          // {
-          //   path: 'session/:sessionId',
-          //   loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
-          // }
+          {
+            path: 'details/:movieId',
+            loadChildren: () => import('../movie-details/movie-details.module').then(m => m.MovieDetailsPageModule)
+          }
         ]
       },
       {
