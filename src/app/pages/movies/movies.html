@@ -7,17 +7,16 @@
       <ion-segment-button value="all">
         <div class="flex ion-align-items-center">
           All
-          <ion-badge class="margin-left" slot="start" color="medium">{{movieObject?.page}} / {{movieObject?.total_pages}}</ion-badge>
+          <ion-badge class="margin-left" slot="start" color="medium">{{movieObject?.page}} /
+            {{movieObject?.total_pages}}</ion-badge>
         </div>
       </ion-segment-button>
-
       <ion-segment-button value="favorites">
         <div class="flex ion-align-items-center">
           Favorites
-          <ion-badge class="margin-left" slot="start" color="medium">{{favoritesObj?.page}} / {{favoritesObj?.total_pages}}</ion-badge>
+          <ion-badge class="margin-left" slot="start" color="medium">{{favoritesObj?.page}} /
+            {{favoritesObj?.total_pages}}</ion-badge>
         </div>
-
-
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -26,25 +25,6 @@
 <ion-content>
 
   <ion-list #scheduleList *ngIf="segment === 'all'" class="ion-no-padding">
-
-    <!-- <ion-grid class="ion-no-padding ">
-      <ion-row>
-        <ion-col size="6" class="ion-no-padding ">
-          <ion-item lines="none ">
-            <ion-icon name="film"></ion-icon>
-            <ion-label class="numbers ">{{movieObject?.total_results}} movies</ion-label>
-          </ion-item>
-        </ion-col>
-        <ion-col size="6" class="ion-no-padding ">
-          <ion-item lines="none ">
-            <ion-label class="numbers ion-text-right ">page {{movieObject?.page}} from {{movieObject?.total_pages}}
-            </ion-label>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid> -->
-
-
     <ion-grid>
       <ion-row>
         <ion-col size="6" *ngFor="let movie of firstPart">
@@ -64,25 +44,6 @@
   </ion-list>
 
   <ion-list *ngIf="segment === 'favorites'" class="ion-no-padding">
-
-    <!-- <ion-grid class="ion-no-padding ">
-      <ion-row>
-        <ion-col size="6" class="ion-no-padding ">
-          <ion-item lines="none ">
-            <ion-icon name="film"></ion-icon>
-            <ion-label class="numbers ">{{favoritesObj?.total_results}} movies</ion-label>
-          </ion-item>
-        </ion-col>
-        <ion-col size="6" class="ion-no-padding ">
-          <ion-item lines="none ">
-            <ion-label class="numbers ion-text-right ">page {{favoritesObj?.page}} from
-              {{favoritesObj?.total_pages}}
-            </ion-label>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid> -->
-
     <ion-grid>
       <ion-row>
         <ion-col size="6" *ngFor="let movie of firstFavoritePart">
@@ -101,23 +62,28 @@
 
 
 
-  <!-- <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
+
+
+
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
-      <ion-icon name="share"></ion-icon>
+      <ion-icon name="arrow-dropleft"></ion-icon>
     </ion-fab-button>
-    <ion-fab-list side="top">
-      <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
-        <ion-icon name="logo-vimeo"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button color="google" (click)="openSocial('Google+', fab)">
-        <ion-icon name="logo-googleplus"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button color="twitter" (click)="openSocial('Twitter', fab)">
-        <ion-icon name="logo-twitter"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button color="facebook" (click)="openSocial('Facebook', fab)">
-        <ion-icon name="logo-facebook"></ion-icon>
-      </ion-fab-button>
-    </ion-fab-list>
+        <ion-fab-list side="top">
+          <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
+            <ion-icon name="logo-vimeo"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="google" (click)="openSocial('Google+', fab)">
+            <ion-icon name="logo-googleplus"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="twitter" (click)="openSocial('Twitter', fab)">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="facebook" (click)="openSocial('Facebook', fab)">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
   </ion-fab> -->
+
+
 </ion-content>
