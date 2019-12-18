@@ -7,11 +7,18 @@
       <ion-segment-button value="all">
         <div class="flex ion-align-items-center">
           All
-          <ion-badge slot="start" color="medium" class="ion-margin-start">100/500</ion-badge>
+          <ion-badge class="margin-left" slot="start" color="medium">{{movieObject?.page}} / {{movieObject?.total_pages}}</ion-badge>
         </div>
       </ion-segment-button>
 
-      <ion-segment-button value="favorites">Favorites</ion-segment-button>
+      <ion-segment-button value="favorites">
+        <div class="flex ion-align-items-center">
+          Favorites
+          <ion-badge class="margin-left" slot="start" color="medium">{{favoritesObj?.page}} / {{favoritesObj?.total_pages}}</ion-badge>
+        </div>
+
+
+      </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
@@ -56,7 +63,7 @@
     </ion-grid>
   </ion-list>
 
-  <ion-list *ngIf="segment === 'favorites'">
+  <ion-list *ngIf="segment === 'favorites'" class="ion-no-padding">
 
     <!-- <ion-grid class="ion-no-padding ">
       <ion-row>
