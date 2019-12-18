@@ -32,17 +32,13 @@ export class MovieDetailsPage implements OnInit {
     const movieId = +this.route.snapshot.paramMap.get('id');
 
     this.movieService.getFilmById(movieId).subscribe((filmList: any) => {
-      // console.log(filmList);
       this.movieDetails = filmList;
       console.log(this.movieDetails);
       this.logo_path = this.movieDetails.production_companies.filter(item => item.logo_path !== null);
     });
-
-
-
   }
 
   ionViewDidEnter() {
-    this.defaultHref = `/app/tabs/movie`;
+    this.defaultHref = `/app/tabs/movies`;
   }
 }

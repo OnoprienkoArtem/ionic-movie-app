@@ -17,7 +17,7 @@ const routes: Routes = [
             component: MoviesPage,
           },
           {
-            path: 'details/:movieId',
+            path: 'details/:id',
             loadChildren: () => import('../movie-details/movie-details.module').then(m => m.MovieDetailsPageModule)
           }
         ]
