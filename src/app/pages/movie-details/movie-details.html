@@ -1,14 +1,38 @@
 <ion-header>
   <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
-    <ion-title>movie-details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{movieDetails?.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  
+    <div class="detail-header">
+      <img [src]="imgUrl + movieDetails?.backdrop_path" alt="">
+    </div>
+
+    <div class="movie-title">
+      <img class="poster" [src]="imgUrl + movieDetails?.poster_path" alt="">
+      <div class="taglines">
+        <h5>{{movieDetails?.tagline}}</h5>
+        <p class='year'>{{movieDetails?.release_date | date: 'yyyy'}}</p>
+        <p class="genre">
+          <span *ngFor="let genre of movieDetails?.genres">
+            <span>{{genre.name}}/</span>
+          </span>
+        </p>
+        <p class="budget" [hidden]="!movieDetails?.budget">{{movieDetails?.budget}}$ </p>
+        <a [href]="movieDetails?.homepage">{{movieDetails?.homepage}}</a>
+      </div>
+
+    </div>
+    <p class="overview">{{movieDetails?.overview}}</p>
+    <div class="production_companies">
+      <span *ngFor="let production_companie of logo_path">
+        <img src="{{imgUrl + production_companie.logo_path}}" alt="">
+      </span>
+    </div>
 
 </ion-content>
