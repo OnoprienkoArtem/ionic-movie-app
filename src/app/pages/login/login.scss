@@ -22,7 +22,8 @@
 }
 
 .login-container {
-  background-image: radial-gradient(at 25% top, #32112c 0%, #0a1526 40%), url(assets/img/deadpool.png);
+  background: url(assets/img/deadpool.png) 0 15% / contain no-repeat,
+  radial-gradient(at 25% top, #32112c 0%, #0a1526 40%);
   height: 100%;
 }
 
