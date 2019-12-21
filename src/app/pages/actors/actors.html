@@ -3,15 +3,21 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Actors</ion-title>
+    <ion-title>      
+      <div class="flex ion-align-items-center">
+        Actors
+        <ion-badge class="margin-left" slot="start" color="medium">{{actorsObject?.page}} /
+          {{actorsObject?.total_pages}}</ion-badge>
+      </div>
+      </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-    <ion-list>
+    <ion-list class="ion-no-padding">
 
-      <ion-grid class="ion-no-padding ">
+      <!-- <ion-grid class="ion-no-padding ">
         <ion-row>
           <ion-col size="6" class="ion-no-padding ">
             <ion-item lines="none ">
@@ -26,7 +32,7 @@
             </ion-item>
           </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid> -->
 
       <ion-grid>
         <ion-row>
