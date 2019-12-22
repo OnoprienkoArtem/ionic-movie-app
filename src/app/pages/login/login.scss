@@ -1,30 +1,11 @@
-.login-logo {
-  min-height: 300px;
-  height: 300px;
-  text-align: center;
-}
-
-.login-logo {
-  display: flex;
-  // background-image: url(assets/img/red_pipes.svg);
-  // background-size: 150%;
-  // background-position: center;
-  // background-repeat: no-repeat;
-
-  img {
-    max-width: 90%;
-    margin: auto;
-  }
-}
-
-.list {
-  margin-bottom: 0;
+ion-list {
+  padding: 10px;
 }
 
 .login-container {
   background: url(assets/img/deadpool.png) 0 15% / contain no-repeat,
-  url(assets/img/red_pipes.svg) 0 33%/100% ,
-  radial-gradient(at 25% top, #32112c 0%, #0a1526 40%);
+    url(assets/img/red_pipes.svg) center 40%/110%,
+    radial-gradient(at 25% top, #32112c 0%, #0a1526 40%);
   height: 100%;
 }
 
