@@ -20,8 +20,7 @@ export class MovieService {
     return this.http.get(`${this.localConfig.movieUrl}/popular${this.localConfig.params}&page=${page}`);
   }
 
-  getListOfFavoritesFilms(user_id, session_id, page?) {
-    // tslint:disable-next-line: max-line-length
+  getListOfFavoritesFilms(user_id, session_id, page?) {   
     return this.http.get(`${this.localConfig.accountUrl}/${user_id}/favorite/movies?api_key=${this.localConfig.apiKey}&session_id=${session_id}&language=ru-RU&page=${page}`);
   }
 
@@ -31,6 +30,10 @@ export class MovieService {
 
   getPopularActors(page?: number) {
     return this.http.get(`${this.localConfig.personUrl}/popular${this.localConfig.params}&page=${page}`);
+  }
+
+  getActorById(id?: number) {
+    return this.http.get(`${this.localConfig.personUrl}/${id}${this.localConfig.params}`);
   }
 
 }

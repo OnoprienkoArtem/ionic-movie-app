@@ -37,12 +37,12 @@
       <ion-grid>
         <ion-row>
           <ion-col size="6" *ngFor="let actor of firstPart">
-            <ion-card class="big-cards" routerLink="/app/tabs/actor/detail/{{actor?.id}}">
+            <ion-card class="big-cards" routerLink="/app/tabs/actors/details/{{actor?.id}}">
               <img src="{{imgUrl + actor?.profile_path}} " alt=" " />
             </ion-card>
           </ion-col>
           <ion-col size="4" *ngFor="let actor of secondPart">
-            <ion-card class="small-cards " routerLink="/app/tabs/actor/detail/{{actor?.id}}">
+            <ion-card class="small-cards " routerLink="/app/tabs/actors/details/{{actor?.id}}">
               <img src="{{imgUrl + actor?.profile_path}} " alt=" " />
             </ion-card>
           </ion-col>

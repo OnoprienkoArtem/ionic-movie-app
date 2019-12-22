@@ -3,11 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConferenceData } from '../../providers/conference-data';
 
 @Component({
-  selector: 'page-speaker-detail',
-  templateUrl: 'speaker-detail.html',
-  styleUrls: ['./speaker-detail.scss'],
+  selector: 'page-actor-detail',
+  templateUrl: 'actor-detail.html',
+  styleUrls: ['./actor-detail.scss'],
 })
-export class SpeakerDetailPage {
+export class ActorDetailPage {
   speaker: any;
 
   constructor(
