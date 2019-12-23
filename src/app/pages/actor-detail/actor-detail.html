@@ -8,9 +8,22 @@
 </ion-header>
 
 <ion-content>
+  <div>
     <div class="detail-header">
-      <img [src]="imgUrl + actorDetails?.profile_path" alt="">
+      <img [src]="imgUrl + actorDetails?.profile_path" alt="">      
     </div>
+    <div class="">
+      <h2>{{actorDetails?.popularity}}</h2>
+      <h3>{{actorDetails?.birthday}}</h3>
+      <h4>{{actorDetails?.place_of_birth}}</h4>
+    </div>
+
+  </div>
+
+  <div>
+    <p>{{actorDetails?.biography}}</p>
+  </div>
+
 
     <!-- <div class="movie-title">
       <img class="poster" [src]="imgUrl + movieDetails?.poster_path" alt="">
