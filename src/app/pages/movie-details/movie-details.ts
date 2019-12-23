@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserData } from '../../providers/user-data';
 import { MovieService } from '../../providers/movie.service';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
@@ -12,15 +11,13 @@ import { ApiConfig } from '../../models/api';
 })
 export class MovieDetailsPage implements OnInit {
 
-  session: any;
   isFavorite = false;
   defaultHref = '';
   public movieDetails: any;
   public imgUrl: string = this.localConfig.midImgPath;
   public logo_path: any[];
 
-  constructor(
-    private userProvider: UserData,
+  constructor(    
     private route: ActivatedRoute,
     public movieService: MovieService,
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
