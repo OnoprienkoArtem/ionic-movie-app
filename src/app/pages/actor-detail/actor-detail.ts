@@ -23,8 +23,11 @@ export class ActorDetailPage {
   ) { }
 
   ionViewWillEnter() {
+    const actorId = +this.route.snapshot.paramMap.get('id');
 
-
-
+    this.movieService.getActorById(actorId).subscribe((actorList: any) => {
+      this.actorDetails = actorList;
+      console.log(this.actorDetails);
+    });
   }
 }

@@ -1,27 +1,35 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/app/tabs/speakers"></ion-back-button>
+      <ion-back-button defaultHref="/app/tabs/actors"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{speaker?.name}}</ion-title>
+    <ion-title>{{actorDetails?.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding speaker-detail">
-  <div *ngIf="speaker" class="ion-text-center">
-    <img [src]="speaker.profilePic" [alt]="speaker.name">
-    <br>
+<ion-content>
+    <div class="detail-header">
+      <img [src]="imgUrl + actorDetails?.profile_path" alt="">
+    </div>
 
-    <ion-button fill="clear" size="small" color="twitter">
-      <ion-icon name="logo-twitter" slot="icon-only"></ion-icon>
-    </ion-button>
-    <ion-button fill="clear" size="small" color="github">
-      <ion-icon name="logo-github" slot="icon-only"></ion-icon>
-    </ion-button>
-    <ion-button fill="clear" size="small" color="instagram">
-      <ion-icon name="logo-instagram" slot="icon-only"></ion-icon>
-    </ion-button>
-  </div>
-
-  <p>{{speaker?.about}}</p>
+    <!-- <div class="movie-title">
+      <img class="poster" [src]="imgUrl + movieDetails?.poster_path" alt="">
+      <div class="taglines">
+        <h5>{{movieDetails?.tagline}}</h5>
+        <p class='year'>{{movieDetails?.release_date | date: 'yyyy'}}</p>
+        <p class="genre">
+          <span *ngFor="let genre of movieDetails?.genres">
+            <span>{{genre.name}}/</span>
+          </span>
+        </p>
+        <p class="budget" [hidden]="!movieDetails?.budget">{{movieDetails?.budget}}$ </p>
+        <a [href]="movieDetails?.homepage">{{movieDetails?.homepage}}</a>
+      </div>
+    </div>
+    <p class="overview">{{movieDetails?.overview}}</p>
+    <div class="production_companies">
+      <span *ngFor="let production_companie of logo_path">
+        <img src="{{imgUrl + production_companie.logo_path}}" alt="">
+      </span>
+    </div> -->
 </ion-content>
