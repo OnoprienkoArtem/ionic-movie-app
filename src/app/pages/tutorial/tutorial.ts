@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { Subscription } from 'rxjs';
 import { ApiConfig } from '../../models/api';
 import { MovieService } from '../../providers/movie.service';
+import { ActorService } from '../../providers/actor.service';
 import { LOCAL_CONFIG } from '../../config/config-api';
 @Component({
   selector: 'page-tutorial',
@@ -28,6 +29,7 @@ export class TutorialPage implements OnInit, OnDestroy {
     public router: Router,
     public storage: Storage,
     private movieService: MovieService,
+    public actorService: ActorService,
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) { }
 
@@ -41,7 +43,7 @@ export class TutorialPage implements OnInit, OnDestroy {
       err => console.log('error', err)
     );
 
-    this.movieService.getPopularActors().subscribe(
+    this.actorService.getPopularActors().subscribe(
       (actorsList: any) => {
         this.actorsClone = actorsList.results;
         this.actors = this.actorsClone.slice(0, 9);
