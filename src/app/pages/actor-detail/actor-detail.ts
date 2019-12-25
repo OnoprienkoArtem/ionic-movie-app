@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MovieService } from '../../providers/movie.service';
+import { ActorService } from '../../providers/actor.service';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
 
@@ -18,14 +18,14 @@ export class ActorDetailPage {
 
   constructor(
     private route: ActivatedRoute,
-    public movieService: MovieService,
+    public actorService: ActorService,
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig
   ) { }
 
   ionViewWillEnter() {
     const actorId = +this.route.snapshot.paramMap.get('id');
 
-    this.movieService.getActorById(actorId).subscribe((actorList: any) => {
+    this.actorService.getActorById(actorId).subscribe((actorList: any) => {
       this.actorDetails = actorList;
       console.log(this.actorDetails);
     });

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MovieService } from '../../providers/movie.service';
+import { ActorService } from '../../providers/actor.service';
 import { LOCAL_CONFIG } from '../../config/config-api';
 import { ApiConfig } from '../../models/api';
 @Component({
@@ -21,11 +21,11 @@ export class ActorsPage implements OnInit, OnDestroy {
   constructor(
     @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
     public router: Router,
-    public movieService: MovieService
+    public actorService: ActorService
   ) { }
 
   ngOnInit() {
-    this.actorsSubscription = this.movieService.getPopularActors()
+    this.actorsSubscription = this.actorService.getPopularActors()
       .subscribe(data => {
         this.actorsObject = data;
         console.log(this.actorsObject);
