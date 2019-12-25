@@ -28,12 +28,5 @@ export class MovieService {
     return this.http.get(`${this.localConfig.movieUrl}/${id}${this.localConfig.params}`);
   }
 
-  getPopularActors(page?: number) {
-    return this.http.get(`${this.localConfig.personUrl}/popular${this.localConfig.params}&page=${page}`);
-  }
-
-  getActorById(id?: number) {
-    return this.http.get(`${this.localConfig.personUrl}/${id}${this.localConfig.params}`);
-  }
 
 }
