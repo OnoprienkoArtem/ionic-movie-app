@@ -10,17 +10,22 @@
 <ion-content>
   <div class="details-header">
     <div class="actor-photo">
-      <img [src]="imgUrl + actorDetails?.profile_path" alt="">      
+      <img [src]="imgUrl + actorDetails?.profile_path" alt="">
     </div>
     <div class="actor-details">
+      <div class="wrap">
+        <div class="progress-radial progress-90">
+          <div class="overlay">90%</div>
+        </div>
+      </div>
       <h2>{{actorDetails?.popularity}}</h2>
       <h1>{{actorDetails?.name}}</h1>
       <h3 *ngIf="actorDetails?.birthday">
-        <span>Birthday: </span>   
+        <span>Birthday: </span>
         {{actorDetails?.birthday}}
       </h3>
       <h4 *ngIf="actorDetails?.place_of_birth">
-        <span>Place of birth: </span> 
+        <span>Place of birth: </span>
         {{actorDetails?.place_of_birth}}
       </h4>
     </div>
@@ -32,7 +37,7 @@
   </div>
 
 
-    <!-- <div class="movie-title">
+  <!-- <div class="movie-title">
       <img class="poster" [src]="imgUrl + movieDetails?.poster_path" alt="">
       <div class="taglines">
         <h5>{{movieDetails?.tagline}}</h5>

@@ -29,6 +29,7 @@
 
 .details-header {
   display: flex;
+
   .actor-photo {
     width: 250px;
     min-width: 250px;
@@ -115,4 +116,35 @@
 
 p {
   margin: 10px 0;
+}
+
+.wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+.progress-radial {
+  float: left;   margin-right: 30px; 
+  position: relative; 
+  width: 100px;
+  height: 100px; border-radius: 50%; 
+ background-color: tomato; // default 100%
+}
+
+.progress-radial .overlay {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: #fffde8;
+  border-radius: 50%;
+  margin-left: 20px;
+  margin-top: 20px;
+  text-align: center;
+  line-height: 60px;
+  font-size: 16px;
+}
+
+.progress-90 {
+  background-image: linear-gradient(54deg, #ff6347 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(270deg, #ff6347 50%, #2f3439 50%, #2f3439);
 }
