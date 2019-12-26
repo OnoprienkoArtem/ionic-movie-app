@@ -30,4 +30,8 @@ export class ActorDetailPage {
       console.log(this.actorDetails);
     });
   }
+
+  ionViewDidEnter() {
+    this.defaultHref = `/app/tabs/actors`;
+  }
 }
