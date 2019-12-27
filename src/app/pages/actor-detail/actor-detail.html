@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="defaultHref"></ion-back-button>
+      <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
     </ion-buttons>
     <ion-title>{{actorDetails?.name}}</ion-title>
   </ion-toolbar>
@@ -13,11 +13,6 @@
       <img [src]="imgUrl + actorDetails?.profile_path" alt="">
     </div>
     <div class="actor-details">
-      <div class="wrap">
-        <div class="progress-radial progress-90">
-          <div class="overlay">90%</div>
-        </div>
-      </div>
       <h2>{{actorDetails?.popularity}}</h2>
       <h1>{{actorDetails?.name}}</h1>
       <h3 *ngIf="actorDetails?.birthday">
@@ -29,32 +24,9 @@
         {{actorDetails?.place_of_birth}}
       </h4>
     </div>
-
   </div>
-
   <div class="biography">
     <p>{{actorDetails?.biography}}</p>
   </div>
 
-
-  <!-- <div class="movie-title">
-      <img class="poster" [src]="imgUrl + movieDetails?.poster_path" alt="">
-      <div class="taglines">
-        <h5>{{movieDetails?.tagline}}</h5>
-        <p class='year'>{{movieDetails?.release_date | date: 'yyyy'}}</p>
-        <p class="genre">
-          <span *ngFor="let genre of movieDetails?.genres">
-            <span>{{genre.name}}/</span>
-          </span>
-        </p>
-        <p class="budget" [hidden]="!movieDetails?.budget">{{movieDetails?.budget}}$ </p>
-        <a [href]="movieDetails?.homepage">{{movieDetails?.homepage}}</a>
-      </div>
-    </div>
-    <p class="overview">{{movieDetails?.overview}}</p>
-    <div class="production_companies">
-      <span *ngFor="let production_companie of logo_path">
-        <img src="{{imgUrl + production_companie.logo_path}}" alt="">
-      </span>
-    </div> -->
 </ion-content>
