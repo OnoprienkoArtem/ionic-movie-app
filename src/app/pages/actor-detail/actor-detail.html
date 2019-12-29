@@ -16,16 +16,17 @@
       <h2>{{actorDetails?.popularity}}</h2>
       <h1>{{actorDetails?.name}}</h1>
       <h3 *ngIf="actorDetails?.birthday">
-        <span>Birthday: </span>
+        <div>Birthday: </div>
         {{actorDetails?.birthday}}
       </h3>
-      <h4 *ngIf="actorDetails?.place_of_birth">
-        <span>Place of birth: </span>
+      <h3 *ngIf="actorDetails?.place_of_birth">
+        <div>Place of birth: </div>
         {{actorDetails?.place_of_birth}}
-      </h4>
+      </h3>
     </div>
   </div>
   <div class="biography">
+    <div>Biography:</div>
     <p>{{actorDetails?.biography}}</p>
   </div>
 

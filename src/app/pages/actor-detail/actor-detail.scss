@@ -1,39 +1,9 @@
-.show-favorite {
-  position: relative;
-}
-
-.icon-heart-empty {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  transform: scale(1);
-  transition: transform 0.3s ease;
-}
-
-.icon-heart {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  transform: scale(0);
-  transition: transform 0.3s ease;
-}
-
-.show-favorite .icon-heart {
-  transform: scale(1);
-}
-
-.show-favorite .icon-heart-empty {
-  transform: scale(0);
-}
-
-
 .details-header {
   display: flex;
 
   .actor-photo {
-    width: 250px;
-    min-width: 250px;
-    max-width: 250px;
+    width: 200px;
+    min-width: 200px;
     padding: 15px;
 
     img {
@@ -47,104 +17,40 @@
   }
 }
 
+p {
+  margin-top: 10px;
+}
+
+h1 {
+ font-size: 28px;
+}
+
+h2 {
+ font-size: 10px;
+}
+
+h3 {
+  font-size: 20px;
+  div {
+    font-size: 14px;
+    color: gray;
+  }
+}
+
 .actor-details {
   padding-right: 15px;
 }
 
 .biography {
-  padding: 15px;
-}
-
-.movie-title {
-  // font-family: 'Montserrat', sans-serif;
-  display: flex;
-
-  .poster {
-    width: 30%;
-    padding: 10px 0 10px 10px;
-    max-height: 180px;
-  }
-
-  .taglines {
-    display: block;
-    width: 70%;
-    padding: 0 10px;
-
-    h5 {
-      font-size: 18px;
-      margin: 10px 0;
-    }
-
-    a {
-      font-size: 10px;
-      text-decoration: none;
-      font-style: italic;
-    }
-
-    .year {
-      font-size: 14px;
-      font-weight: 900;
-      color: silver;
-    }
-
-    .genre {
-      font-weight: 500;
-      font-size: 12px;
-    }
-  }
-}
-
-.overview {
-  padding: 0 10px;
-}
-
-.production_companies {
-  display: flex;
-  padding: 0 20px;
-
-  span {
-    max-height: 100px;
-    padding: 10px;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-  }
-}
-
-p {
-  margin: 10px 0;
-}
-
-.wrap {
-  width: 100%;
-  margin: 0 auto;
-}
-
-
-.progress-radial {
-  float: left;   margin-right: 30px; 
-  position: relative; 
-  width: 100px;
-  height: 100px; border-radius: 50%; 
- background-color: tomato; // default 100%
-}
-
-.progress-radial .overlay {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background-color: #fffde8;
-  border-radius: 50%;
-  margin-left: 20px;
-  margin-top: 20px;
-  text-align: center;
-  line-height: 60px;
   font-size: 16px;
+  padding: 0 15px;
+  div {
+    font-size: 14px;
+    color: gray;
+  }
 }
 
-.progress-90 {
-  background-image: linear-gradient(54deg, #ff6347 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(270deg, #ff6347 50%, #2f3439 50%, #2f3439);
-}
+
+
+
+
