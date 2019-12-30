@@ -15,6 +15,11 @@
       box-shadow: 5px 5px 5px grey;
     }
   }
+
+  .actor-details {
+    padding: 15px 15px 0 0;
+    width: 100%;
+  }
 }
 
 p {
@@ -37,9 +42,7 @@ h3 {
   }
 }
 
-.actor-details {
-  padding-right: 15px;
-}
+
 
 .biography {
   font-size: 16px;

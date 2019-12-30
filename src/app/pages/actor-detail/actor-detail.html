@@ -1,38 +1,49 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
-    </ion-buttons>
-    <ion-title>{{actorDetails?.name}}</ion-title>
-  </ion-toolbar>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button [defaultHref]="defaultHref"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{actorDetails?.name}}</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="details-header">
-    <div class="actor-photo">
-      <img [src]="imgUrl + actorDetails?.profile_path" alt="">
-    </div>
-    <div class="actor-details">
-
-      <circle-progress [percent]="actorDetails?.popularity" [radius]="50" [outerStrokeWidth]="16" [innerStrokeWidth]="8"
-        [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="300">
-      </circle-progress>
-
-      <h2>{{actorDetails?.popularity}}</h2>
-      <h1>{{actorDetails?.name}}</h1>
-      <h3 *ngIf="actorDetails?.birthday">
-        <div>Birthday: </div>
-        {{actorDetails?.birthday}}
-      </h3>
-      <h3 *ngIf="actorDetails?.place_of_birth">
-        <div>Place of birth: </div>
-        {{actorDetails?.place_of_birth}}
-      </h3>
-    </div>
-  </div>
-  <div class="biography">
-    <div>Biography:</div>
-    <p>{{actorDetails?.biography}}</p>
-  </div>
-
+	<div class="details-header">
+		<div class="actor-photo">
+			<img [src]="imgUrl + actorDetails?.profile_path" alt="" />
+		</div>
+		<div class="actor-details">
+			<div>
+				<circle-progress
+					[percent]="actorDetails?.popularity"
+					[radius]="20"
+					[outerStrokeWidth]="6"
+					[titleFontSize]="14"
+					[showSubtitle]="false"
+					[showUnits]="false"
+					[showInnerStroke]="false"
+					[titleColor]="'#fff'"
+					[outerStrokeColor]="'#61d378'"
+					[backgroundColor]="'#222'"
+					[animation]="true"
+					[animationDuration]="300"
+				>
+				</circle-progress>
+			</div>
+			<h2>{{actorDetails?.popularity}}</h2>
+			<h1>{{actorDetails?.name}}</h1>
+			<h3 *ngIf="actorDetails?.birthday">
+				<div>Birthday:</div>
+				{{actorDetails?.birthday}}
+			</h3>
+			<h3 *ngIf="actorDetails?.place_of_birth">
+				<div>Place of birth:</div>
+				{{actorDetails?.place_of_birth}}
+			</h3>
+		</div>
+	</div>
+	<div class="biography">
+		<div>Biography:</div>
+		<p>{{actorDetails?.biography}}</p>
+	</div>
 </ion-content>
