@@ -13,7 +13,7 @@
 			<img [src]="imgUrl + actorDetails?.profile_path" alt="" />
 		</div>
 		<div class="actor-details">
-			<div>
+			<div class="popularity">
 				<circle-progress
 					[percent]="actorDetails?.popularity"
 					[radius]="20"
@@ -29,8 +29,7 @@
 					[animationDuration]="300"
 				>
 				</circle-progress>
-			</div>
-			<h2>{{actorDetails?.popularity}}</h2>
+			</div>		
 			<h1>{{actorDetails?.name}}</h1>
 			<h3 *ngIf="actorDetails?.birthday">
 				<div>Birthday:</div>

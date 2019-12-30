@@ -19,6 +19,10 @@
   .actor-details {
     padding: 15px 15px 0 0;
     width: 100%;
+    .popularity {
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 }
 
