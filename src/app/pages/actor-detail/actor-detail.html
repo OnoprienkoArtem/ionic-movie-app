@@ -13,23 +13,22 @@
 			<img [src]="imgUrl + actorDetails?.profile_path" alt="" />
 		</div>
 		<div class="actor-details">
-			<div class="popularity">
-				<circle-progress
-					[percent]="actorDetails?.popularity"
-					[radius]="20"
-					[outerStrokeWidth]="6"
-					[titleFontSize]="14"
-					[showSubtitle]="false"
-					[showUnits]="false"
-					[showInnerStroke]="false"
-					[titleColor]="'#fff'"
-					[outerStrokeColor]="'#61d378'"
-					[backgroundColor]="'#222'"
-					[animation]="true"
-					[animationDuration]="300"
-				>
-				</circle-progress>
-			</div>		
+			<circle-progress
+				class="popularity"
+				[percent]="actorDetails?.popularity"
+				[radius]="20"
+				[outerStrokeWidth]="6"
+				[titleFontSize]="14"
+				[showSubtitle]="false"
+				[showUnits]="false"
+				[showInnerStroke]="false"
+				[titleColor]="'#fff'"
+				[outerStrokeColor]="'#61d378'"
+				[backgroundColor]="'#222'"
+				[animation]="true"
+				[animationDuration]="300"
+			>
+			</circle-progress>
 			<h1>{{actorDetails?.name}}</h1>
 			<h3 *ngIf="actorDetails?.birthday">
 				<div>Birthday:</div>
@@ -41,7 +40,7 @@
 			</h3>
 		</div>
 	</div>
-	<div class="biography">
+	<div class="biography" *ngIf="actorDetails?.biography">
 		<div>Biography:</div>
 		<p>{{actorDetails?.biography}}</p>
 	</div>
