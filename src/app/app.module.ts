@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 
 import { LOCAL_CONFIG, localConfig } from './config/config-api';
 
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,6 +27,15 @@ import { LOCAL_CONFIG, localConfig } from './config/config-api';
     IonicStorageModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production
+    }),
+    // Specify ng-circle-progress as an import
+    NgCircleProgressModule.forRoot({
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: '#78C000',
+      innerStrokeColor: '#C7E596',
+      animationDuration: 300
     })
   ],
   declarations: [AppComponent],

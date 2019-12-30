@@ -13,6 +13,11 @@
       <img [src]="imgUrl + actorDetails?.profile_path" alt="">
     </div>
     <div class="actor-details">
+
+      <circle-progress [percent]="actorDetails?.popularity" [radius]="50" [outerStrokeWidth]="16" [innerStrokeWidth]="8"
+        [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="300">
+      </circle-progress>
+
       <h2>{{actorDetails?.popularity}}</h2>
       <h1>{{actorDetails?.name}}</h1>
       <h3 *ngIf="actorDetails?.birthday">

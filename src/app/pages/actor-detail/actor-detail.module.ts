@@ -5,11 +5,14 @@ import { ActorDetailPage } from './actor-detail';
 import { ActorDetailPageRoutingModule } from './actor-detail-routing.module';
 import { IonicModule } from '@ionic/angular';
 
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
-    ActorDetailPageRoutingModule
+    ActorDetailPageRoutingModule,
+    NgCircleProgressModule.forRoot()
   ],
   declarations: [
     ActorDetailPage,
